@@ -1,0 +1,90 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{mdframed}
+\usepackage{url}
+
+\newcommand{\BlackBox}{\rule{1.5ex}{1.5ex}}
+
+\definecolor{blue}{rgb}{0,0,0.8}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset
+{
+   basicstyle=\ttfamily\footnotesize,
+   language=C++,
+   numbers=right,
+   numberstyle=\color{gray},
+   showtabs=true,
+   breaklines=true,
+   breakatwhitespace=true,
+   captionpos=bottom,
+   keywordstyle=\color{blue},
+   commentstyle=\color{dkgreen},
+   stringstyle=\color{mauve},
+   frame=single
+}
+
+\mdfsetup
+{
+   skipabove=\topskip,
+   skipbelow=\topskip,
+   leftmargin=2em,
+   rightmargin=2em
+}
+
+
+\title
+{
+   \includegraphics[width=12cm]{up_logo.png} \\
+   \vspace{2cm}
+   \textbf{COS700} \\
+   \textbf{Research Proposal} \\ \vspace{0.5cm}
+   \textbf{My Project Title} \\ \vspace{0.5cm}
+   \textbf{Student number:} 12345678 \\ \vspace{0.5cm}
+   \textbf{Supervisor(s)}: \\ Supervisor1 \\ Supervisor2 
+}
+
+\date{}
+\begin{document}
+
+\maketitle
+
+\newpage
+\linespread{1.25}
+\section*{Title of your Project}
+
+\section*{Abstract}
+Write your abstract here
+
+\section*{Keywords:}
+List your keywords here, separated by a comma
+
+\newpage
+
+\section{Introduction}
+Write your introduction here.
+
+\section{Problem Statement}
+Write here your problem statement and/or your research question and sub-questions.
+
+\section{Literature Study}
+Write here your literature study
+
+\section{Methodology}
+Write here your epistemological stance and your research method, i.e. the approach you are using for your research project.
+
+\section{Planning}
+Discuss here the tasks and milestones for you project. You can also add a figure such as a Gantt chart.
+
+\bibliographystyle{alpha}
+\bibliography{yourBibFile} %change the name here to the name of your .bib file
+
+\end{document}
