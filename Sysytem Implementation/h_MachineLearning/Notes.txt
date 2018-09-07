@@ -1,0 +1,6 @@
+﻿- Decision Tree
+1)  Create training dataset
+
+2) Create full dataset
+
+- Comparing rule induction and Naive Bayes
