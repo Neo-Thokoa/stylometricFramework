@@ -1,0 +1,7 @@
+1. Mendenhall’s Characteristic Curves of Composition
+
+an author’s stylistic signature could be found by counting how often he or she used words of different lengths.
+
+Early attempta at stylometry
+- Quickest to implement
+Drawbacks: does not take the actual words in an author’s vocabulary into account, which is obviously problematic.
