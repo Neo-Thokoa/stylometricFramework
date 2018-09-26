@@ -5,3 +5,56 @@ an author’s stylistic signature could be found by counting how often he or she u
 Early attempta at stylometry
 - Quickest to implement
 Drawbacks: does not take the actual words in an author’s vocabulary into account, which is obviously problematic.
+
+As you can see from the graphs, the characteristic curve associated with the disputed papers looks like a compromise between Madison’s and Hamilton’s. The leftmost part of the disputed papers’ graph, which accounts for the most frequent word lengths, looks a bit more similar to Madison’s; the tail end of the graph, like Hamilton’s. This is consistent with the historical observation that Madison and Hamilton had similar styles, but it does not help us much with our authorship attribution task. The best that we can say is that John Jay almost certainly did not write the disputed papers, because his curve looks nothing like the others; lengths 6 and 7 are even inverted in his part of the corpus, compared to everyone else’s.
+
+If we had no additional information to work with, we would tend to conclude that the disputed papers are probably Madison’s work, albeit without much confidence
+
+2. Kilgariff’s Chi-Squared Method
+
+Chi-squared is sometimes used to test whether a set of observations (say, voters’ intentions as stated in a poll) follow a certain probability distribution or pattern.
+use the statistic to measure the “distance” between the vocabularies employed in two sets of texts. The more similar the vocabularies, the likelier it is that the same author wrote the texts in both sets. This assumes that a person’s vocabulary and word usage patterns are relatively constant.
+
+Here is how to apply the statistic for authorship attribution:
+
+Take the corpora associated with two authors.
+Merge them into a single, larger corpus.
+Count the tokens for each of the words that can be found in this larger corpus.
+Select the n most common words in the larger corpus.
+Calculate how many tokens of these n most common words we would have expected to find in each of the two original corpora if they had come from the same author. This simply means dividing the number of tokens that we have observed in the combined corpus into two values, based on the relative sizes of the two authors’ contributions to the common corpus.
+Calculate a chi-squared distance by summing, over the n most common words, the squares of the differences between the actual numbers of tokens found in each author’s corpus and the expected numbers, divided by the expected numbers. Figure 6 shows the equation for the chi-squared statistic, where C(i) represents the observed number of tokens for feature ‘i’, and E(i), the expected number for this feature.
+
+The smaller the chi-squared value, the more similar the two corpora. Therefore, we will calculate a chi-squared for the difference between the Madison and Disputed corpora, and another for the difference between the Hamilton and Disputed corpora; the smaller value will indicate which of Madison and Hamilton is the most similar to Disputed.
+
+This does not use Part of Speech tagging
+
+
+3. John Burrows’ Delta Method 
+
+Delta measures how the anonymous text and sets of texts written by an arbitrary number of known authors all diverge from the average of all of them put together.
+
+Burrows’ original algorithm can be summarized as follows:
+
+Assemble a large corpus made up of texts written by an arbitrary number of authors; let’s say that number of authors is x.
+Find the n most frequent words in the corpus to use as features.
+For each of these n features, calculate the share of each of the x authors’ subcorpora represented by this feature, as a percentage of the total number of words. As an example, the word “the” may represent 4.72% of the words in Author A’s subcorpus.
+Then, calculate the mean and the standard deviation of these x values and use them as the offical mean and standard deviation for this feature over the whole corpus. In other words, we will be using a mean of means instead of calculating a single value representing the share of the entire corpus represented by each word. This is because we want to avoid a larger subcorpus, like Hamilton’s in our case, over-influencing the results in its favor and defining the corpus norm in such a way that everything would be expected to look like it.
+For each of the n features and x subcorpora, calculate a z-score describing how far away from the corpus norm the usage of this particular feature in this particular subcorpus happens to be. To do this, subtract the “mean of means” for the feature from the feature’s frequency in the subcorpus and divide the result by the feature’s standard deviation. Figure 7 shows the z-score equation for feature ‘i’, where C(i) represents the observed frequency, the greek letter mu represents the mean of means, and the greek letter sigma, the standard deviation.
+
+
+
+
+
+
+
+
+Paper:Authorship Verification for Short Messages using
+Stylometry
+
+Authorship analysis can be carried from three different
+perspectives including authorship attribution or identification,
+authorship verification, and authorship profiling or characterization.
+
+Authorship verification consists of checking
+whether a target document was written or not by a specific
+individual. (what we want)
