@@ -2,6 +2,7 @@ from os import listdir
 from os.path import isfile, join, isdir
 import csv
 import email
+import re
 # import psv
 
 
@@ -26,7 +27,6 @@ def load_corpus(input_dir):
                     mailset.append({'text': txt})
             # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
-    print(trainset[0])
     return trainset
 
 
@@ -40,6 +40,7 @@ def writeIntoCSV(data):
 
 # data = load_Judge('../../../Datasets/Enron/raw_maildir')
 data = load_corpus('../../../Datasets/Enron/raw_maildir')
+print(data[0]['mailset'][0])
 # matrix = train_model(data)
 # import csv
 # a = zip(*data)
@@ -48,16 +49,14 @@ data = load_corpus('../../../Datasets/Enron/raw_maildir')
 # function that filters vowels
 
 def averageCharNumber(data):
-    averageSet = []
     featureSet = []
     for author in data:
         n = author['numemails']
         c = 0
         for item in author['mailset']:
             c += len(item['text'])
-        averageSet.append({'averageChar': float(float(c)/float(n))})
-        featureSet.append({'author': author['author'], 'featureSet': averageSet})
-    print(featureSet[0])
+        averageset = [{'averageChar': float(float(c) / float(n))}]
+        featureSet.append({'author': author['author'], 'featureSet': averageset})
     return featureSet
 
 def numericRatioDensity(rawdata,data):
@@ -75,24 +74,52 @@ def normalizedCharacterCount(rawdata,data):
 
 def averageWordNumber(dataset,data):
     count = 0
+    finalfeatureset = []
     for author in data:
         n = author['numemails']
         c = 0
+        featureset = []
         for item in author['mailset']:
             c += len(item['text'].split())
-        # wordCount.append({'averageWord': float(float(c) / float(n))})
-        dataset[count]['featureSet'].append({'averageWord': float(float(c) / float(n))})
+        featureset = dataset[count]['featureSet']
+        featureset.append({'averageWord': float(float(c) / float(n))})
         count += 1
-        # featureSet.append({'author': author['author'], 'featureSet': averageSet})
-    return dataset
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+    return finalfeatureset
 
-def averageWordLength(rawdata,data):
-    wordLength = []
-    return wordLength
+def averageWordLength(dataset,data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        wordcount = 0
+        wordlength = 0
+        featureset = []
+        for item in author['mailset']:
+            wordcount += len(item['text'].split())
+            wordlength += len(item['text'])
+        featureset = dataset[count]['featureSet']
+        featureset.append({'averageWordLength':float(float(wordlength)/float(wordcount))})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
 
-def averageSentenceNumber(rawdata,data):
-    sentenceSet = []
-    return sentenceSet
+    return finalfeatureset
+
+def averageSentenceNumber(dataset,data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        sentencecount = 0
+        n = author['numemails']
+        featureset = []
+        for item in author['mailset']:
+            sentencecount += len(re.findall('[.\?!:+]', item['text']))
+        featureset = dataset[count]['featureSet']
+        featureset.append({'averageSentenceCount': float(float(sentencecount) / float(n))})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+
+    return finalfeatureset
+
 
 def shortWordRatioDensity(rawdata,data):
     shortWordRatioSet = []
@@ -121,4 +148,10 @@ datasetForML = averageCharNumber(data)
 print('#################')
 datasetForML = averageWordNumber(datasetForML, data)
 
-# print(datasetForML)
+print('#################')
+datasetForML = averageWordLength(datasetForML, data)
+
+print('#################')
+
+averageSentenceNumber(datasetForML,data)
+print(datasetForML[0])

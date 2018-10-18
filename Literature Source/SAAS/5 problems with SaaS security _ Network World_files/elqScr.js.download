@@ -1,1 +1,0 @@
-var elqDt=new Date();var elqMs=elqDt.getMilliseconds();if((typeof elqCurE!="undefined")&&(typeof elqPPS!="undefined")){document.write('<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="'+elqCurE+"?pps="+elqPPS+"&siteid="+elqSiteID+"&ref="+elqReplace(elqReplace(location.href,"&","%26"),"#","%23")+"&ms="+elqMs+'"></SCRIPT>')};
