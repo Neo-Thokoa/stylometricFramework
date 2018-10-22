@@ -3,7 +3,9 @@ from os.path import isfile, join, isdir
 import csv
 import email
 import re
-# import psv
+import nltk
+from textstat.textstat import textstat
+from textblob import TextBlob
 
 
 def load_corpus(input_dir):
@@ -28,14 +30,6 @@ def load_corpus(input_dir):
             # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
     return trainset
-
-
-def writeIntoCSV(data):
-    f = csv.writer(open("trainTest.csv", "w+"))
-    f.writerow(["author", "message"])
-    for item in data:
-        f.writerow([item['label'], item['text']])
-    print("Done")
 
 
 # data = load_Judge('../../../Datasets/Enron/raw_maildir')
@@ -112,7 +106,7 @@ def averageSentenceNumber(dataset,data):
         n = author['numemails']
         featureset = []
         for item in author['mailset']:
-            sentencecount += len(re.findall('[.\?!:+]', item['text']))
+            sentencecount += textstat.sentence_count(item['text'])
         featureset = dataset[count]['featureSet']
         featureset.append({'averageSentenceCount': float(float(sentencecount) / float(n))})
         count += 1
@@ -121,13 +115,43 @@ def averageSentenceNumber(dataset,data):
     return finalfeatureset
 
 
-def shortWordRatioDensity(rawdata,data):
-    shortWordRatioSet = []
-    return shortWordRatioSet
+def shortWordRatioDensity(dataset, data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        shortwordcount = 0
+        wordcount = 0
+        featureset = []
+        for item in author['mailset']:
+            finalWordList = []
+            words = item['text'].split()
+            for word in words:
+                if len(word) <= 3:
+                    finalWordList.append(word)
+            shortwordcount += len(finalWordList)
+            wordcount += len(item['text'].split())
+        featureset = dataset[count]['featureSet']
+        featureset.append({'shortWordDensity': float(float(shortwordcount)/float(wordcount))})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
 
-def averageParagraphNumber(rawdata,data):
-    paragraphSet = []
-    return paragraphSet
+    return finalfeatureset
+
+
+def averageParagraphNumber(dataset,data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        paragraphcount = 0
+        n = author['numemails']
+        featureset = []
+        for item in author['mailset']:
+            paragraphcount += len(item['text'].split('\r\n')) + 1
+        featureset = dataset[count]['featureSet']
+        featureset.append({'averageParagraphCount': float(float(paragraphcount))})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+    return finalfeatureset
 
 def greetingUsed(rawdata,data):
     greetingSet = []
@@ -141,17 +165,58 @@ def freqPunctuation(rawdata,data):
     punctuationSet = []
     return punctuationSet
 
-print('#################')
+
+def authourSentimentPolarity(dataset,data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        paragraphcount = 0
+        n = author['numemails']
+        totalpolarity = 0
+        totalsubjective = 0
+        featureset = []
+        for item in author['mailset']:
+            wiki = TextBlob(item['text'])
+            totalpolarity = totalpolarity + wiki.sentiment.polarity
+            totalsubjective = totalsubjective + wiki.sentiment.subjectivity
+        featureset = dataset[count]['featureSet']
+        featureset.append({'averagePolarityCount': float(float(totalpolarity)/n)})
+        featureset.append({'averageSubjectivityCount': float(float(totalsubjective) / n)})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+    return finalfeatureset
+
+print('#################1###############')
 datasetForML = averageCharNumber(data)
 # print(datasetForML[0])
 
-print('#################')
+print('#################2###############')
 datasetForML = averageWordNumber(datasetForML, data)
 
-print('#################')
+print('#################3###############')
 datasetForML = averageWordLength(datasetForML, data)
 
-print('#################')
+print('#################4################')
 
-averageSentenceNumber(datasetForML,data)
-print(datasetForML[0])
+datasetForML = averageSentenceNumber(datasetForML,data)
+
+print('#################5################')
+
+datasetForML = averageParagraphNumber(datasetForML,data)
+
+print('#################6################')
+
+datasetForML = shortWordRatioDensity(datasetForML, data)
+
+datasetForML = authourSentimentPolarity(datasetForML, data)
+
+
+def writeIntoCSV(data):
+    f = csv.writer(open("featureset.csv", "w+"))
+    for item in data:
+        for featureitem in item['featureSet']:
+            f.writerow([item['author'], featureitem])
+    print("Done")
+
+
+writeIntoCSV(datasetForML)
