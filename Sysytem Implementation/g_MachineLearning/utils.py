@@ -53,7 +53,6 @@ def dependencies():
     from scipy.sparse.csgraph import _validation
     from sklearn.utils import lgamma
     import cymem
-    import cymem
     import cymem.cymem
     import preshed.maps
     from spacy import strings
@@ -63,31 +62,17 @@ def dependencies():
     from spacy import lemmatizer
     from spacy import lexeme
     import unidecode
-    from spacy import cfile
     from spacy import tokens
     from spacy.tokens import doc
-    from spacy.serialize import bits
-    from spacy.serialize import huffman
-    from spacy.serialize import packer
-    from spacy.serialize.packer import util
     from spacy import vocab
     from spacy import util
     import thinc.cache
-    from thinc import features
-    from thinc import sparse
-    from thinc import learner
-    from thinc import search
     from thinc import api
     from spacy.syntax import stateclass
     from spacy import gold
     from spacy.syntax import transition_system
-    from spacy.syntax import parser
-    from spacy.syntax import _parse_features
-    from spacy.syntax import util
     from sklearn.utils import weight_vector
     from sklearn.decomposition import PCA, FastICA
-    from sklearn.pls import PLSRegression
-    from matplotlib import numerix
     import matplotlib.numerix.random_array
     from utils import dependencies, load_train_data
     from sklearn.feature_extraction.text import TfidfVectorizer
@@ -95,7 +80,6 @@ def dependencies():
     from sklearn.svm import LinearSVC
     from sklearn.pipeline import FeatureUnion
     from sklearn.linear_model import LogisticRegression
-    from sklearn import cross_validation
     import numpy as np
     import nltk
     from sklearn.base import BaseEstimator, ClassifierMixin
@@ -104,7 +88,6 @@ def dependencies():
     from sklearn.feature_selection import chi2
     import string
     from spacy import parts_of_speech
-    from spacy.en import English
     from nltk.corpus import stopwords
     from sklearn.feature_selection import RFECV
     from sklearn.svm import SVC
@@ -127,7 +110,7 @@ def load_enrone(input_dir='/Users/N/Desktop/maildir'):
 
         sent_items = join(input_dir, author, 'sent_items')
         if isdir(sent_items):
-            print author, len(listdir(sent_items))
+            print(author, len(listdir(sent_items)))
 
             for msg in listdir(sent_items):
                 fname = join(sent_items, msg)
@@ -164,6 +147,6 @@ def save_enrone():
                 X.append(msg)
                 y.append(author)
 
-    print len(X), 'items by', len(set(y)), 'authors'
+    print(len(X), 'items by', len(set(y)), 'authors')
 
     save_data(X, y, 'enrone.txt')
