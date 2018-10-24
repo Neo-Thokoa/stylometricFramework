@@ -11,11 +11,11 @@ parser.add_option("-c", "--cls", action="store", type="string", dest="classifier
 parser.add_option("-v", "--vectorizer", action="store", type="string", dest="vectorizer", default="bow")
 (options, args) = parser.parse_args()
 
-print 'loading data..'
+print('loading data..')
 X, y = load_train_data(options.input)
 
 m = Model(classifier_type=options.classifier_type, selection_method=options.selection_method)
 m.fit(X, y)
 
 pickle.dump(m, open(options.output, 'wb'))
-print "Now you can predict authors with \'python predict.py -m  " + options.output + "\'"
+print("Now you can predict authors with \'python predict.py -m  " + options.output + "\'")
