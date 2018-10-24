@@ -6,6 +6,7 @@ import re
 import nltk
 from textstat.textstat import textstat
 from textblob import TextBlob
+import json
 
 
 def load_corpus(input_dir):
@@ -35,6 +36,8 @@ def load_corpus(input_dir):
 # data = load_Judge('../../../Datasets/Enron/raw_maildir')
 data = load_corpus('../../../Datasets/Enron/raw_maildir')
 print(data[0]['mailset'][0])
+
+
 # matrix = train_model(data)
 # import csv
 # a = zip(*data)
@@ -53,20 +56,23 @@ def averageCharNumber(data):
         featureSet.append({'author': author['author'], 'featureSet': averageset})
     return featureSet
 
-def numericRatioDensity(rawdata,data):
+
+def numericRatioDensity(rawdata, data):
     ratioSet = []
     return ratioSet
 
-def spaceRatioDensity(rawdata,data):
+
+def spaceRatioDensity(rawdata, data):
     spaceSet = []
     return spaceSet
 
-def normalizedCharacterCount(rawdata,data):
+
+def normalizedCharacterCount(rawdata, data):
     charCount = []
     return charCount
 
 
-def averageWordNumber(dataset,data):
+def averageWordNumber(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -81,7 +87,8 @@ def averageWordNumber(dataset,data):
         finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
     return finalfeatureset
 
-def averageWordLength(dataset,data):
+
+def averageWordLength(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -92,13 +99,14 @@ def averageWordLength(dataset,data):
             wordcount += len(item['text'].split())
             wordlength += len(item['text'])
         featureset = dataset[count]['featureSet']
-        featureset.append({'averageWordLength':float(float(wordlength)/float(wordcount))})
+        featureset.append({'averageWordLength': float(float(wordlength) / float(wordcount))})
         count += 1
         finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
 
     return finalfeatureset
 
-def averageSentenceNumber(dataset,data):
+
+def averageSentenceNumber(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -131,14 +139,14 @@ def shortWordRatioDensity(dataset, data):
             shortwordcount += len(finalWordList)
             wordcount += len(item['text'].split())
         featureset = dataset[count]['featureSet']
-        featureset.append({'shortWordDensity': float(float(shortwordcount)/float(wordcount))})
+        featureset.append({'shortWordDensity': float(float(shortwordcount) / float(wordcount))})
         count += 1
         finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
 
     return finalfeatureset
 
 
-def averageParagraphNumber(dataset,data):
+def averageParagraphNumber(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -153,20 +161,23 @@ def averageParagraphNumber(dataset,data):
         finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
     return finalfeatureset
 
-def greetingUsed(rawdata,data):
+
+def greetingUsed(rawdata, data):
     greetingSet = []
     return greetingSet
 
-def freqFunctionWords(rawdata,data):
+
+def freqFunctionWords(rawdata, data):
     functionWordsSet = []
     return functionWordsSet
 
-def freqPunctuation(rawdata,data):
+
+def freqPunctuation(rawdata, data):
     punctuationSet = []
     return punctuationSet
 
 
-def authourSentimentPolarity(dataset,data):
+def authourSentimentPolarity(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -180,11 +191,12 @@ def authourSentimentPolarity(dataset,data):
             totalpolarity = totalpolarity + wiki.sentiment.polarity
             totalsubjective = totalsubjective + wiki.sentiment.subjectivity
         featureset = dataset[count]['featureSet']
-        featureset.append({'averagePolarityCount': float(float(totalpolarity)/n)})
+        featureset.append({'averagePolarityCount': float(float(totalpolarity) / n)})
         featureset.append({'averageSubjectivityCount': float(float(totalsubjective) / n)})
         count += 1
         finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
     return finalfeatureset
+
 
 print('#################1###############')
 datasetForML = averageCharNumber(data)
@@ -198,11 +210,11 @@ datasetForML = averageWordLength(datasetForML, data)
 
 print('#################4################')
 
-datasetForML = averageSentenceNumber(datasetForML,data)
+datasetForML = averageSentenceNumber(datasetForML, data)
 
 print('#################5################')
 
-datasetForML = averageParagraphNumber(datasetForML,data)
+datasetForML = averageParagraphNumber(datasetForML, data)
 
 print('#################6################')
 
@@ -212,10 +224,21 @@ datasetForML = authourSentimentPolarity(datasetForML, data)
 
 
 def writeIntoCSV(data):
-    f = csv.writer(open("featureset.csv", "w+"))
+    f = csv.writer(open("featureset.csv", "w+"), quoting=csv.QUOTE_NONE, escapechar=' ')
     for item in data:
-        for featureitem in item['featureSet']:
-            f.writerow([item['author'], featureitem])
+        # d = json.loads(item['featureSet'])
+        values = None
+        counter = 0
+        for featureitems in item['featureSet']:
+            for k, v in featureitems.items():
+                if counter == 0:
+                    values = ''.join([str(v)])
+                    counter = counter + 1
+                else:
+                    values = ''.join([values, ',', str(v)])
+        f.writerow([item['author'], str(values)])
+        # for featureitem in item['featureSet']:
+        #     f.writerow([item['author'], featureitem])
     print("Done")
 
 

@@ -6,6 +6,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
+import jsonify
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
