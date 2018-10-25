@@ -46,7 +46,7 @@ label_id_two = 'UNREAD'
 
 # Getting all the unread messages from Inbox
 # labelIds can be changed accordingly
-unread_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one, label_id_two]).execute()
+unread_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one]).execute()
 
 # We get a dictonary. Now reading values for the key 'messages'
 mssg_list = unread_msgs['messages']
