@@ -8,6 +8,8 @@ from textstat.textstat import textstat
 from textblob import TextBlob
 import json
 
+nltk.download('brown')
+
 
 def load_corpus(input_dir):
     trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
@@ -57,9 +59,22 @@ def averageCharNumber(data):
     return featureSet
 
 
-def numericRatioDensity(rawdata, data):
-    ratioSet = []
-    return ratioSet
+def numericRatioDensity(dataset, data):
+    count = 0
+    finalfeatureset = []
+    for author in data:
+        ratioSet = 0
+        wordcount = 0
+        n = author['numemails']
+        featureset = []
+        for item in author['mailset']:
+            ratioSet = float(float(sum(parsedWord.isdigit() for parsedWord in item['text'])))
+            wordcount += len(item['text'].split())
+        featureset = dataset[count]['featureSet']
+        featureset.append({'numericCount': float(float(ratioSet) / float(n))})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+    return finalfeatureset
 
 
 def spaceRatioDensity(rawdata, data):
@@ -198,7 +213,7 @@ def authourSentimentPolarity(dataset, data):
     return finalfeatureset
 
 
-def averageSentenceToken(dataset, data):
+def averagenounphrase(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
@@ -207,6 +222,14 @@ def averageSentenceToken(dataset, data):
         featureset = []
         for item in author['mailset']:
             wiki = TextBlob(item['text'])
+            counter = wiki.np_counts
+            print(counter)
+        featureset = dataset[count]['featureSet']
+        # featureset.append({'averagePolarityCount': float(float(totalpolarity) / n)})
+        # featureset.append({'averageSubjectivityCount': float(float(totalsubjective) / n)})
+        count += 1
+        finalfeatureset.append({'author': author['author'], 'featureSet': featureset})
+    return finalfeatureset
 
 
 print('#################1###############')
@@ -246,9 +269,14 @@ print('#################7################')
 datasetForML = authourSentimentPolarity(datasetForML, data)
 
 print('#################8################')
-print('Featureset authourSentimentPolarity')
+print('Featureset averagenounphrase')
 print('#################8################')
-datasetForML = averageSentenceToken(datasetForML, data)
+datasetForML = averagenounphrase(datasetForML, data)
+
+print('#################9################')
+print('Featureset numericRatioDensity')
+print('#################9################')
+datasetForML = numericRatioDensity(datasetForML, data)
 
 def writeIntoCSV(data):
     f = csv.writer(open("featureset.csv", "w+"), quoting=csv.QUOTE_NONE, escapechar=' ')
