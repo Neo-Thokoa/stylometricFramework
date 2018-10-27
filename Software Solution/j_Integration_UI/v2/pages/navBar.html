@@ -1,0 +1,25 @@
+  <div ng-controller="navCtrl" id="navCont">
+
+    <nav class="navbar navbar-inverse appNavBar">
+          <div class="container-fluid">
+              <div class="navbar-header">
+                  <a class="navbar-brand">
+                      <img class="navImg" src="img/Icons/up-logo-long-200px.jpg" />
+                  </a>
+                  <h5 class="navHeading">Neo Technical Assessment</h5>
+                  <button type="button" class="navbar-toggle noBorder" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+
+                  <ul class="nav navbar-nav navbar-right">
+                      <li ng-click="home()" class="navPointer" ng-class="{ active: homeActive()}"><a> Home</a></li>
+                  </ul>
+              </div>
+            </div>
+  </nav>
+
+  </div>

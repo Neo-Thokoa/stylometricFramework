@@ -1,0 +1,149 @@
+<div ng-include="url.templateUrl" style="display:inline;"></div>
+<br/>
+
+
+<div class="box">
+  <form class="form-horizontal midSection"  name="projectForm">
+    <div class="bs-docs-section">
+      <div>
+          <div class="section-icon">
+              <i class="">
+                  <img class="img-responsive" src="img/icons/location-setting-512.png" />
+              </i>
+          </div>
+          <h4 id="h5">ToDo Setting</h4>
+          <hr />
+      </div>
+      <div class="innerSection">
+        <div class="messages" ng-model="message" ng-show="message" style="border-color:{{feedColor}}">{{message}}</div>
+        <div ng-show="loader" style="position: relative">
+            <div class="loading-icon">
+                <span class="loader"><span class="loader-inner"></span></span>
+                <label class="loadingText">Loading. Please be patient.</label>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+        <div ng-show="!loader">
+
+              <div class="tableButtons">
+                  <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add ToDo Entity</button>
+              </div>
+
+
+              <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;">
+                  <thead>
+                      <tr>
+                        <th colspan="5"> ToDo List </th>
+                      </tr>
+                      <tr>
+                          <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="v in userSelection | orderBy: 'ID'">
+                          <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                              {{data}}
+                          </td>
+
+                          <td class="threeButtons">
+                              <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                              <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteTodo(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+                    <div class="saveButton adminBack">
+                        <button type="button" class="btn btn-block btn-primary" ng-click="backFunction()">
+                            <span class="glyphicon glyphicon-arrow-left"></span> Back
+                        </button>
+                    </div>
+            </div>
+    </div>
+  </div>
+  </form>
+
+  <!-- Add Modal -->
+  <div id="addModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" style="text-align: center">Add ToDo entry</h4>
+            </div>
+            <div class="modal-body">
+
+              <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                <label class="control-label">{{key}}:</label>
+                <div ng-if="!key.includes('Priority') && !key.includes('Date')">
+                    <input type="text" placeholder="Enter text" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250"></input>
+
+
+                </div>
+                <div ng-if="key.includes('Priority')">
+                  <oi-select oi-options="r.Description for r in getPriorityData"
+                             ng-model="addToDBmodel.userInputs[3]"
+                             placeholder="Select"
+                             ></oi-select>
+                </div>
+                <div ng-if="key.includes('Date')">
+
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-primary" ng-click="addTodo()" data-dismiss="modal">Add Todo</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Edit ToDo</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div ng-if="key.includes('Title')">
+                      <input type="text" placeholder="Enter text" class="form-control"  ng-model="editToDBmodel.Title"  maxlength="250"></input>
+                  </div>
+                  <div ng-if="key.includes('Description')">
+                      <input type="text" placeholder="Enter text" class="form-control"  ng-model="editToDBmodel.Description"  maxlength="250"></input>
+                  </div>
+                  <div ng-if="key.includes('Priority')">
+                    <oi-select oi-options="r.Description for r in getPriorityData"
+                               ng-model="editToDBmodel.Priority"
+                               placeholder="Select"
+                               ></oi-select>
+                  </div>
+                  <div ng-if="key.includes('Date')">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="updateTodo()" data-dismiss="modal">Edit ToDo</button>
+                    <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+        </div>
+      </div>
+
+</div>
