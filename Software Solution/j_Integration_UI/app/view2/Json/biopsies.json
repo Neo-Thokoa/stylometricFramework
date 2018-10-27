@@ -1,0 +1,215 @@
+[
+  {
+    "title" : "Voucher",
+    "selected" : false,
+    "isMuseum" : true,
+    "qualities":[{
+      "heading" : "Found Dead",
+      "value" : false
+    },
+    {
+      "heading" : "Died before processing",
+      "value" : false
+    },
+    {
+      "heading" : "Died after processing",
+      "value" : false
+    },
+    {
+      "heading" : "Euthanised due to human exposure",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "WB",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Blood",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Serum",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "FTA Blood",
+    "selected" : false
+  },
+  {
+    "title" : "Fur",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Parasite",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Tick",
+      "value" : false,
+      "subqualities" : [{"heading" : "DNA", "value" : false}, {"heading" : "RNA", "heading" : "Bat Fly", "value" : false}]
+    },
+    {
+      "heading" : "Flea",
+      "value" : false
+    },
+    {
+      "heading" : "Bat Fly",
+      "value" : false
+    },
+    {
+      "heading" : "Unknown",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Par in EtOH",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Urine",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Feacal",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Na Swab",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Re Swab",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  },
+  {
+    "title" : "Oral swab",
+    "isMuseum" : false,
+    "selected" : false,
+    "qualities":[{
+      "heading" : "Material",
+      "value" : false
+    },
+    {
+      "heading" : "DNA",
+      "value" : false
+    },
+    {
+      "heading" : "RNA",
+      "value" : false
+    }]
+  }
+]

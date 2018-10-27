@@ -1,0 +1,30 @@
+[
+  {
+    "locality": {
+      "value": "Mahune",
+      "tattooPrefix": "SM",
+      "tattooDB": [
+
+          {"value": "SMB758"},
+          {"value": "SMB759"},
+          {"value": "SMB760"},
+          {"value": "SMB773"},
+          {"value": "SMB774"},
+          {"value": "SMB801"},
+          {"value": "SMC135"},
+          {"value": "SMC136"},
+          {"value": "SMB136 recapture"}
+        ]
+      },
+      "locality": {
+        "value": "Meletse,",
+        "tattooPrefix": "A",
+        "tattooDB": [
+
+            {"value": "A710"},
+            {"value": "A710 recapture"}
+          ]
+        }
+
+  }
+]

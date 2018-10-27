@@ -1,0 +1,39 @@
+[
+  {
+    "value" : "A710",
+    "CVZLabNum" : "UP 6378"
+  },
+  {
+    "value" : "SMB758",
+    "CVZLabNum" : "UP 6845"
+  },
+  {
+    "value" : "SMB759",
+    "CVZLabNum" : "UP 6846"
+  },
+  {
+    "value" : "SMB760",
+    "CVZLabNum" : "UP 6847"
+  },
+  {
+    "value" : "SMB773",
+    "CVZLabNum" : "UP 6861"
+  },
+  {
+    "value" : "SMB774",
+    "CVZLabNum" : "UP 6862"
+  },
+  {
+    "value" : "SMB801",
+    "CVZLabNum" : "UP 6892"
+  },
+  {
+    "value" : "SMC 135",
+    "CVZLabNum" : "UP 7631"
+  },
+  {
+    "value" : "SMC 136",
+    "CVZLabNum" : "UP 7632"
+  }
+
+]

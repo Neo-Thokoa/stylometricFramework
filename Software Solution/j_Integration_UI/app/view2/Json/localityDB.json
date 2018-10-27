@@ -1,0 +1,22 @@
+[
+  {
+    "value" : "Mahune, near Mafefe",
+    "situated" : {
+      "provinialRegion" : "Limpopo",
+      "Country" : "South Africa",
+      "Dec_S" : "24.11497",
+      "Dec_E" : "30.12151",
+      "Sites" : ["Cave 1"]
+    }
+  },
+  {
+    "value" : "Meletse, Thabazimbi",
+    "situated" : {
+      "provinialRegion" : "Limpopo",
+      "Country" : "South Africa",
+      "Dec_S" : "24.6181",
+      "Dec_E" : "027.65231",
+      "Sites" : ["Gatkop cave"]
+    }
+  }
+]

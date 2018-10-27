@@ -1,0 +1,147 @@
+[
+  {
+    "ID" : 1,
+    "Description" : "Age",
+    "fnCall" : "$scope.getAge();"
+  },
+  {
+    "ID" : 2,
+    "Description" : "Animal",
+    "fnCall" : "$scope.getAnimal();"
+  },
+  {
+    "ID" : 3,
+    "Description" : "Area",
+    "fnCall" : "$scope.getArea();"
+  },
+  {
+    "ID" : 4,
+    "Description" : "Box",
+    "fnCall" : "$scope.getBox();"
+  },
+  {
+    "ID" : 5,
+    "Description" : "Cell",
+    "fnCall" : "$scope.getCell();"
+  },
+  {
+    "ID" : 6,
+    "Description" : "Country",
+    "fnCall" : "$scope.getCountry();"
+  },
+  {
+    "ID" : 7,
+    "Description" : "Death Voucher",
+    "fnCall" : "$scope.getDeathVoucher();"
+  },
+  {
+    "ID" : 8,
+    "Description" : "Drawer",
+    "fnCall" : "$scope.getDrawer();"
+  },
+  {
+    "ID" : 9,
+    "Description" : "Entity",
+    "fnCall" : "$scope.getEntity();"
+  },
+  {
+    "ID" : 10,
+    "Description" : "Entity Type",
+    "fnCall" : "$scope.getEntityType();"
+  },
+  {
+    "ID" : 11,
+    "Description" : "Freezer",
+    "fnCall" : "$scope.getFreezer();"
+  },
+  {
+    "ID" : 12,
+    "Description" : "Function",
+    "fnCall" : "$scope.getFunction();"
+  },
+  {
+    "ID" : 13,
+    "Description" : "ID Method",
+    "fnCall" : "$scope.getIDMethod();"
+  },
+  {
+    "ID" : 14,
+    "Description" : "Local Region",
+    "fnCall" : "$scope.getLocalRegion();"
+  },
+  {
+    "ID" : 15,
+    "Description" : "Material",
+    "fnCall" : "$scope.getMaterial();"
+  },
+  {
+    "ID" : 16,
+    "Description" : "Museum",
+    "fnCall" : "$scope.getMuseum();"
+  },
+  {
+    "ID" : 17,
+    "Description" : "Museum Voucher",
+    "fnCall" : "$scope.getMuseumVoucher();"
+  },
+  {
+    "ID" : 18,
+    "Description" : "Origin",
+    "fnCall" : "$scope.getOrigin();"
+  },
+  {
+    "ID" : 19,
+    "Description" : "Photo",
+    "fnCall" : "$scope.getPhoto();"
+  },
+  {
+    "ID" : 20,
+    "Description" : "Publication",
+    "fnCall" : "$scope.getPublication();"
+  },
+  {
+    "ID" : 21,
+    "Description" : "Region",
+    "fnCall" : "$scope.getRegion();"
+  },
+  {
+    "ID" : 22,
+    "Description" : "Role",
+    "fnCall" : "$scope.getRole();"
+  },
+  {
+    "ID" : 23,
+    "Description" : "Sample",
+    "fnCall" : "$scope.getSample();"
+  },
+  {
+    "ID" : 24,
+    "Description" : "Sex",
+    "fnCall" : "$scope.getSex();"
+  },
+  {
+    "ID" : 25,
+    "Description" : "Site",
+    "fnCall" : "$scope.getSite();"
+  },
+  {
+    "ID" : 26,
+    "Description" : "Species",
+    "fnCall" : "$scope.getSpecies();"
+  },
+  {
+    "ID" : 27,
+    "Description" : "Test",
+    "fnCall" : "$scope.getTest();"
+  },
+  {
+    "ID" : 28,
+    "Description" : "Title",
+    "fnCall" : "$scope.getTitle();"
+  },
+  {
+    "ID" : 29,
+    "Description" : "User",
+    "fnCall" : "$scope.getUser();"
+  }
+]
