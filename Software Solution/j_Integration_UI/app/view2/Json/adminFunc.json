@@ -1,0 +1,118 @@
+[
+  {
+    "ID" : 1,
+    "Description" : "Age"
+  },
+  {
+    "ID" : 2,
+    "Description" : "Animal"
+  },
+  {
+    "ID" : 3,
+    "Description" : "Area"
+  },
+  {
+    "ID" : 4,
+    "Description" : "Box"
+  },
+  {
+    "ID" : 5,
+    "Description" : "Cell"
+  },
+  {
+    "ID" : 6,
+    "Description" : "Country"
+  },
+  {
+    "ID" : 7,
+    "Description" : "Death Voucher"
+  },
+  {
+    "ID" : 8,
+    "Description" : "Drawer"
+  },
+  {
+    "ID" : 9,
+    "Description" : "Entity"
+  },
+  {
+    "ID" : 10,
+    "Description" : "Entity Type"
+  },
+  {
+    "ID" : 11,
+    "Description" : "Freezer"
+  },
+  {
+    "ID" : 12,
+    "Description" : "Function"
+  },
+  {
+    "ID" : 13,
+    "Description" : "ID Method"
+  },
+  {
+    "ID" : 14,
+    "Description" : "Local Region"
+  },
+  {
+    "ID" : 15,
+    "Description" : "Material"
+  },
+  {
+    "ID" : 16,
+    "Description" : "Museum"
+  },
+  {
+    "ID" : 17,
+    "Description" : "Museum Voucher"
+  },
+  {
+    "ID" : 18,
+    "Description" : "Origin"
+  },
+  {
+    "ID" : 19,
+    "Description" : "Photo"
+  },
+  {
+    "ID" : 20,
+    "Description" : "Publication"
+  },
+  {
+    "ID" : 21,
+    "Description" : "Region"
+  },
+  {
+    "ID" : 22,
+    "Description" : "Role"
+  },
+  {
+    "ID" : 23,
+    "Description" : "Sample"
+  },
+  {
+    "ID" : 24,
+    "Description" : "Sex"
+  },
+  {
+    "ID" : 25,
+    "Description" : "Site"
+  },
+  {
+    "ID" : 26,
+    "Description" : "Species"
+  },
+  {
+    "ID" : 27,
+    "Description" : "Test"
+  },
+  {
+    "ID" : 28,
+    "Description" : "Title"
+  },
+  {
+    "ID" : 29,
+    "Description" : "User"
+  }
+]

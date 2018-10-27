@@ -1,0 +1,10 @@
+{
+  "host" : {
+    "types" : ["Insectivorous bat", "Frugivorous bat", "Other"],
+    "otherTypes" : ["Mongoose", "civit"]
+  },
+  "source" : {
+    "types" : ["Environmental-cave water", "Environmental-Rousettus aegypriacus colony urine"]
+
+  }
+}

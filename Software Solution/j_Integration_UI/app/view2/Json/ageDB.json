@@ -1,0 +1,15 @@
+[
+  {"value" : "A",
+    "Age" : "Adult (A)"
+  },
+  {"Age" : "Juvenile (J)",
+    "value" : "J"
+  },
+  {"Age" : "Sub-adult (SA)",
+    "value" : "SA"
+  },
+  {
+    "value" : "Unknown",
+    "Age" : "Unknown"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {"value" : "M",
+    "sex" : "Male (M)"
+  },
+  {"sex" : "Female (F)",
+    "value" : "F"
+  },
+  {"sex" : "Unknown",
+    "value" : "Unknown"}
+]
