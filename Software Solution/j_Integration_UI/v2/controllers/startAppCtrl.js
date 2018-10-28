@@ -66,6 +66,29 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
           .then(function(resp){
             $scope.loading = false;
               console.log(resp.data);
+              $scope.dataExtract();
+
+          },function(error){
+              console.log(error);
+          });
+          // $http.get("http://127.0.0.1:5000/dataAcquisition/").then(function(response){
+          //   console.log(response.data); });
+        }
+
+        $scope.dataExtract = function()
+        {
+          console.log("Inside Data Extraction")
+          $scope.loading = true;
+          $http({
+            method:'GET',
+            url:'http://127.0.0.1:5000/featureEngineer/',
+            headers: {
+               'Content-Type': 'application/json;charset=utf-8'
+            }
+          })
+          .then(function(resp){
+            $scope.loading = false;
+              console.log(resp);
 
           },function(error){
               console.log(error);

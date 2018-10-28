@@ -4,6 +4,7 @@ from flask_cors import CORS
 import importlib, importlib.util, os.path
 import os
 import dataclean
+import featureengineering
 
 app = FlaskAPI(__name__)
 CORS(app)
@@ -36,6 +37,18 @@ def dataCleaning():
     output = dataclean.load_corpus()
     if output != 0:
         return {'status':output}
+    print("Kaizer Chiefs")
+    return {'status':output}
+
+@app.route('/featureEngineer/')
+def featureEngineer():
+    # foo = module_from_file("foo", "/a_DataAquisition/retrieve_gmail.py")
+    # result = foo.dataacuire()
+    # return {'data': result}
+    # output = subprocess.check_output(["python", "b_DataCleaning/dataclean.py"])
+    output = featureengineering.dataextraction()
+    if output != 0:
+        return output
     print("Kaizer Chiefs")
     return {'status':output}
 
