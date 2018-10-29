@@ -1,0 +1,1193 @@
+<div ng-include="url.templateUrl" style="display:inline;"></div>
+<br/>
+<br/>
+<br/>
+
+<div class="box">
+    <form class="form-horizontal midSection"  name="projectForm">
+        <div class="bs-docs-section" ng-if="isAdmin">
+            <div>
+                <div class="section-icon">
+                    <i class="">
+                        <img class="img-responsive" src="img/icons/projects-icon-128px.png" />
+                    </i>
+                </div>
+                <h4 id="h5">Admin functions</h4>
+                <hr />
+            </div>
+            <div class="innerSection">
+                <!-- USER FEEDBACK -->
+                <div class="messages" ng-model="message" ng-show="message" style="border-color:{{feedColor}}">{{message}}</div>
+
+                <div ng-show="loader" style="position: relative">
+                    <div class="loading-icon">
+                        <span class="loader"><span class="loader-inner"></span></span>
+                        <label class="loadingText">Loading. Please be patient.</label>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+
+                <div ng-show="!loader">
+
+
+
+                  <h5 id="subHeading">Search Admin Functions</h5>
+                  <!-- <div style="display:inline">
+                      <nit-advanced-searchbox ng-model="searchParams"
+                                              parameters="availableSearchParams"
+                                              placeholder="Search..." id="searchSection">
+                      </nit-advanced-searchbox>
+                  </div> -->
+                  <br />
+                  <div class="form-group">
+                      <div class="col-sm-12">
+                          <div>
+
+                            <oi-select oi-options="x.Description for x in getAdminData"
+                                       ng-model="dbmodel"
+                                       ng-change="adminSelectionUpdater()"
+                                       required
+                                       placeholder="Search Look up table"></oi-select>
+
+                            <span class="help-block" ng-show="errorStatus">{{errorStatus}}</span>
+                          </div>
+
+                      </div>
+                  </div>
+                  <br>
+
+                <div ng-if="open_AGE">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Age to Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Age </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'" ng-if="!key.includes('ID')">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteAge(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <center>
+                      <ul uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" ng-change="setPagingData(currentPage)" items-per-page="itemsPerPage" class="pagination-sm" max-size="5" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                      <pre>The selected page no: {{currentPage}}</pre>
+                  </center>
+                </div>
+
+                <div ng-if="open_DEATHVOUCHER">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Death Voucher to Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Death Voucher </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteDeathVoucher(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_ENTITY">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Entity</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="8"> Entity </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteEntity(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_ENTITYTYPE">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Entity Type</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Entity Type </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteEntityType(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+
+                <div ng-if="open_FUNCTION">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Function To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Function </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteFunction(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_IDMETHOD">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add ID Method To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3">ID Method </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteIDMethod(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+
+                <div ng-if="open_MATERIAL">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Material To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Material </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteMaterial(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_MUSEUM">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Museum To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Museum </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteMuseum(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_MUSEUMVOUCHER">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Museum Voucher To Database</button>
+                  </div>
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Museum Voucher </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection" | orderBy: 'Description'>
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteMuseumVoucher(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_ORIGIN">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Origin To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Origin </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteOrigin(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_PHOTO">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="6"> {{dbmodel.Description}} </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection">
+                              <td ng-repeat="(key, data) in userSelection[$index]" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deletePhoto(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+
+                <div ng-if="open_ROLE">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Role To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Role </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteRole(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_SAMPLE">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Sample To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Sample </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteSample(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_SEX">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Sex </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteSex(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <!-- -->
+                <div ng-if="open_SPECIES">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> Species </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteSpecies(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_TEST">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="5"> Test </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteTest(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div ng-if="open_TITLE">
+                  <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus-sign"></span> Add To Database</button>
+                  </div>
+
+
+                  <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;" ng-if="dbmodel.length != 0">
+                      <thead>
+                          <tr>
+                            <th colspan="3"> {{dbmodel.Description}} </th>
+                          </tr>
+                          <tr>
+                              <th ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">{{key}}</th>
+
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="v in userSelection | orderBy: 'Description'">
+                              <td ng-repeat="(key, data) in v" ng-if="!key.includes('ID')">
+                                  {{data}}
+                              </td>
+
+                              <td class="threeButtons">
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="edit(v)" data-toggle="modal" data-target="#editModal"><span title="edit function" class="glyphicon glyphicon-pencil"></span></button>
+                                  <button type="button" class="btn btn-link spacer adminIcons" ng-click="deleteTitle(v.ID)"><span title="delete function" class="glyphicon glyphicon-trash"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+
+
+                    </div>
+
+
+                <div class="saveButton adminBack">
+                    <button type="button" class="btn btn-block btn-primary" ng-click="Back()">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Back
+                    </button>
+                </div>
+
+            </div>
+            </div>
+    </form>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div ng-if="open_AGE">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" style="text-align: center">Add Age</h4>
+            </div>
+            <div class="modal-body">
+
+              <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                <label class="control-label">{{key}}:</label>
+                <div>
+                    <input type="text" placeholder="Enter Age description" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[0]"  maxlength="250" ng-model="siteName"></input>
+                    <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-primary" ng-click="addAgeToDB()" data-dismiss="modal">Add Age</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+
+          <div ng-if="open_DEATHVOUCHER">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Death Voucher Description" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+              <div ng-if="open_DEATHVOUCHER">
+                <button type="button" class="btn btn-block btn-primary" ng-click="addDeathVoucher()" data-dismiss="modal">Add Death Voucher</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_ENTITY">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID') && !key.includes('Description')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter info" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index - labels.length - 1]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+
+                <div ng-repeat="x in referentialObj" >
+                    <label class="control-label" ng-if="labels[$index].includes('Description')">{{labels[$index]}}:</label>
+                    <div>
+                            <oi-select oi-options="r.Description for r in referentialObj[$index]"
+                                       ng-model="addToDBmodel.userInputs[$index]"
+                                       ng-change="updateAddAnimal()"
+                                       placeholder="Select"
+                                       readonly></oi-select>
+                    </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_ENTITY">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addEntity()" data-dismiss="modal">Add Entity</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_ENTITYTYPE">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_ENTITYTYPE">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addEntityType()" data-dismiss="modal">Add Entity Type</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_FUNCTION">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_FUNCTION">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addFunction()" data-dismiss="modal">Add Function</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_IDMETHOD">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_IDMETHOD">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addIDMethod()" data-dismiss="modal">Add ID Method</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_MATERIAL">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_MATERIAL">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addMaterial()" data-dismiss="modal">Add Material</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_MUSEUM">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_MUSEUM">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addMuseum()" data-dismiss="modal">Add Museum</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_MUSEUMVOUCHER">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add Museum Voucher</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID') && !key.includes('Description')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter text" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="key.includes('SamplingOccID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter ID" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+                <div ng-repeat="x in referentialObj" >
+                    <label class="control-label" ng-if="labels[$index].includes('Description')">{{labels[$index]}}:</label>
+                    <div>
+                            <oi-select oi-options="r.Description for r in referentialObj[$index]"
+                                       ng-model="addToDBmodel.userInputs[$index]"
+                                       ng-change="updateAddAnimal()"
+                                       placeholder="Select"
+                                       readonly></oi-select>
+                    </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_MUSEUMVOUCHER">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addMuseumVoucher()" data-dismiss="modal">Add Museum Voucher</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_ORIGIN">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add Origin</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Origin name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_ORIGIN">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addOrigin()" data-dismiss="modal">Add Origin</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_PHOTO">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_PHOTO">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addPhoto()" data-dismiss="modal">Add Photo</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_ROLE">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Role Description" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_ROLE">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addSite()" data-dismiss="modal">Add Role</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_SEX">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter site name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_SEX">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addSex()" data-dismiss="modal">Add Sex</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_SPECIES">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add {{dbmodel.Description}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Species name" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_SPECIES">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addSpecies()" data-dismiss="modal">Add Species</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_TEST">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add Test</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID') && !key.includes('Desciption')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Test Description" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="key.includes('SamplingOccID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter ID" name="siteName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+                <div ng-repeat="x in referentialObj" >
+                    <label class="control-label" ng-if="labels[$index].includes('Description')">{{labels[$index]}}:</label>
+                    <div>
+                            <oi-select oi-options="r.Description for r in referentialObj[$index]"
+                                       ng-model="addToDBmodel.userInputs[$index]"
+                                       ng-change="updateAddAnimal()"
+                                       placeholder="Select"
+                                       readonly></oi-select>
+                    </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <div ng-if="open_TEST">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addTest()" data-dismiss="modal">Add Test</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="open_TITLE">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align: center">Add Title</h4>
+              </div>
+              <div class="modal-body">
+
+                <div ng-repeat="(key, data) in userSelection[0]" ng-if="!key.includes('ID')">
+                  <label class="control-label">{{key}}:</label>
+                  <div>
+                      <input type="text" placeholder="Enter Title Description" name="testName" class="form-control"  ng-model="addToDBmodel.userInputs[$index]"  maxlength="250" ng-model="siteName"></input>
+                      <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-block btn-primary" ng-click="addTitle()" data-dismiss="modal">Add title</button>
+                  <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- update Modal -->
+    <div id="editModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="text-align: center">Update {{dbmodel.Description}}</h4>
+          </div>
+          <div class="modal-body">
+
+            <div ng-repeat="(key, data) in editToDBmodel" ng-if="!key.includes('ID')">
+              <label class="control-label" >{{key}}:</label>
+              <div>
+                  <input type="text" placeholder="Enter site name" class="form-control"  ng-model="editToDBmodel[key]" ng-model-options="{getterSetter: true}" maxlength="250"></input>
+                  <span class="help-block" ng-show="errorProjNum">{{errorOPN}}</span>
+              </div>
+            </div>
+           </div>
+
+          <div class="modal-footer">
+            <div ng-if="open_AGE">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateAge()" data-dismiss="modal">Update Age</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+            </div>
+            <div ng-if="open_AREA">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateArea()" data-dismiss="modal">Update Area</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_BOX">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateBox()" data-dismiss="modal">Update Box</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_CELL">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateCell()" data-dismiss="modal">Update Cell</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_COUNTRY">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateCountry()" data-dismiss="modal">Update Country</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_DEATHVOUCHER">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateDeathVoucher()" data-dismiss="modal">Update Death Voucher</button>
+                <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_DRAWER">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateDrawer()" data-dismiss="modal">Update Drawer</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_ENTITY">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateEntity()" data-dismiss="modal">Update Entity</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_ENTITYTYPE">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateEntityType()" data-dismiss="modal">Update Entity Type</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_FREEZER">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateFreezer()" data-dismiss="modal">Update Freezer</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_FUNCTION">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateFunction()" data-dismiss="modal">Update Function</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_IDMETHOD">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateIDMethod()" data-dismiss="modal">Update ID Method</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_LOCALREGION">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateLocalRegion()" data-dismiss="modal">Update Local Region</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_MATERIAL">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateMaterial()" data-dismiss="modal">Update Material</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_MUSEUM">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateMuseum()" data-dismiss="modal">Update Museum</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_MUSEUMVOUCHER">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateMuseumVoucher()" data-dismiss="modal">Update Museum Voucher</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_ORIGIN">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateOrigin()" data-dismiss="modal">Update Origin</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_PHOTO">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updatePhoto()" data-dismiss="modal">Update Photo</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_PUBLICATION">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updatePublication()" data-dismiss="modal">Update Publication</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_REGION">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateRegion()" data-dismiss="modal">Update Region</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_ROLE">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateRole()" data-dismiss="modal">Update Role</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_SEX">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateSex()" data-dismiss="modal">Update Sex</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_SITE">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateSite()" data-dismiss="modal">Update Site</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_SPECIES">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateSpecies()" data-dismiss="modal">Update Species</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_TEST">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateTest()" data-dismiss="modal">Update Test</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            <div ng-if="open_TITLE">
+              <button type="button" class="btn btn-block btn-primary" ng-click="updateTitle()" data-dismiss="modal">Update Title</button>
+              <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Close</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div ng-include="url.templateUrl" style="display:inline;"></div>
+    <h1 class="h2-style">Start App Page</h1>
+    <div class="box">
+        <form class="form-horizontal midSection"  name="projectForm">
+          <div class="bs-docs-section">
+            <div>
+              <div class="section-icon">
+                  <i class="">
+                      <img class="img-responsive" src="img/icons/projects-icon-128px.png" />
+                  </i>
+              </div>
+              <h4 id="h5">Admin functions</h4>
+              <hr />
+            </div>
+            <div class="innerSection">
+              <div ng-show="loader" style="position: relative">
+                    <div class="loading-icon">
+                        <span class="loader"><span class="loader-inner"></span></span>
+                        <label class="loadingText">Loading. Please be patient.</label>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+              </div>
+              <div ng-show="!loader">
+                <div class="tableButtons">
+                      <button type="button" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Open Something</button>
+                </div>
+                <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;">
+                  <thead>
+                    <tr>
+                      <th colspan="3"> Authors </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+    </div>
+
+
+
+</div>

@@ -35,8 +35,32 @@ def load_corpus(input_dir):
     return trainset
 
 
-# data = load_Judge('../../../Datasets/Enron/raw_maildir')
-data = load_corpus('../../../Datasets/Enron/raw_maildir')
+def load_dir(input_dir):
+    trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
+    trainset = []
+    # startIndex = 0
+    # numEmails = 0
+    for author in trainfiles:
+        mailset = []
+        # authorset = []
+        sent_items = join(input_dir, author, 'sent_items')
+        if isdir(sent_items) and len(listdir(sent_items)) > 50:
+            # print(author, len(listdir(sent_items)))
+            for msg in listdir(sent_items):
+                fname = join(sent_items, msg)
+                if isfile(fname):
+                    e = email.message_from_file(open(fname))
+                    txt = e.get_payload().split('-----')[0]
+                    txt = ''.join(e for e in txt if e.isalnum() or e == ' ')
+                    # trainset.append({'label': author, 'text': txt})
+                    mailset.append({'text': txt})
+            # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
+            trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
+    return trainset
+
+
+# data = load_corpus('../../../Datasets/Enron/raw_maildir')
+data = load_dir('./b_DataCleaning')
 print(data[0]['mailset'][0])
 
 

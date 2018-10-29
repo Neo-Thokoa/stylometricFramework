@@ -15,7 +15,7 @@ store = file.Storage('token.json')
 user_id = 'me'
 
 
-def main():
+def dataaquire():
     label_id_one = 'INBOX'
     creds = store.get()
     if not creds or creds.invalid:
@@ -62,10 +62,10 @@ def main():
         #                                        format='raw').execute()
         # msg_str = base64.urlsafe_b64decode(message['raw'].encode('ASCII'))
         # mime_msg = email.message_from_string(msg_str)
-        print(mime_msg)
+        # print(mime_msg)
         try:
             message = GMAIL.users().messages().get(userId=user_id, id=m_id,
-                                                     format='raw').execute()
+                                                   format='raw').execute()
             msg_str = base64.urlsafe_b64decode(message['raw'].encode('ASCII'))
             mime_msg = email.message_from_string(msg_str)
             # Fetching message body
@@ -98,6 +98,13 @@ def main():
         writer.writeheader()
         for val in final_list:
             writer.writerow(val)
+    return "Success Here"
+
+
+def main():
+    return dataaquire()
+
 
 if __name__ == '__main__':
     main()
+    print("Operation Success")
