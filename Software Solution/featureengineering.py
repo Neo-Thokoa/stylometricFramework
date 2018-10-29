@@ -324,5 +324,9 @@ def dataextraction():
     datasetForML = numericRatioDensity(datasetForML, data)
 
     writeIntoCSV(datasetForML)
-    return "data"
+    result = {"result": datasetForML}
+    json_data = json.dumps(result)
+    return json_data
+
+
 

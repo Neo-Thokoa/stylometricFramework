@@ -30,10 +30,6 @@ def dataAcquisition():
 
 @app.route('/dataCleaning/')
 def dataCleaning():
-    # foo = module_from_file("foo", "/a_DataAquisition/retrieve_gmail.py")
-    # result = foo.dataacuire()
-    # return {'data': result}
-    # output = subprocess.check_output(["python", "b_DataCleaning/dataclean.py"])
     output = dataclean.load_corpus()
     if output != 0:
         return {'status':output}
@@ -48,10 +44,9 @@ def featureEngineer():
     # output = subprocess.check_output(["python", "b_DataCleaning/dataclean.py"])
     output = featureengineering.dataextraction()
     if output != 0:
-        print("Kaizer Chiefs")
         return output
     print("Kaizer Chiefs")
-    return {'status':output}
+    return {'Error':output}
 
 def module_from_file(module_name, file_path):
     print(file_path)

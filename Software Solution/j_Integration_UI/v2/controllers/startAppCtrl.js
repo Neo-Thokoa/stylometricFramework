@@ -1,6 +1,10 @@
 todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function ($http, $scope, $location) {
 
-  $scope.loading = false;
+  $scope.loader = false;
+  $scope.result = "-";
+  $scope.ngram = {
+        value: 10
+      };
 
       $scope.cleaner = function()
         {
@@ -29,7 +33,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
 
         $scope.initializeApp = function()
         {
-          $scope.loading = true;
+          $scope.loader = true;
           $http({
             method:'GET',
             url:'http://127.0.0.1:5000/dataAcquisition/',
@@ -38,7 +42,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
             }
           })
           .then(function(resp){
-            $scope.loading = false;
+            $scope.loader = false;
               console.log(resp.data);
               if(resp.data.status == "Success")
               {
@@ -55,7 +59,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
         $scope.dataClean = function()
         {
           console.log("Inside Data Clean")
-          $scope.loading = true;
+          $scope.loader = true;
           $http({
             method:'GET',
             url:'http://127.0.0.1:5000/dataCleaning/',
@@ -64,7 +68,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
             }
           })
           .then(function(resp){
-            $scope.loading = false;
+            $scope.loader = false;
               console.log(resp.data);
               $scope.dataExtract();
 
@@ -78,7 +82,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
         $scope.dataExtract = function()
         {
           console.log("Inside Data Extraction")
-          $scope.loading = true;
+          $scope.loader = true;
           $http({
             method:'GET',
             url:'http://127.0.0.1:5000/featureEngineer/',
@@ -87,9 +91,9 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
             }
           })
           .then(function(resp){
-            $scope.loading = false;
-              console.log(resp);
-
+            $scope.loader = false;
+              $scope.result = resp.data;
+              console.log($scope.result);
           },function(error){
               console.log(error);
           });

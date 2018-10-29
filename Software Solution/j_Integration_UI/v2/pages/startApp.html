@@ -4,15 +4,6 @@
     <div class="box">
         <form class="form-horizontal midSection"  name="projectForm">
           <div class="bs-docs-section">
-            <div>
-              <div class="section-icon">
-                  <i class="">
-                      <img class="img-responsive" src="img/icons/projects-icon-128px.png" />
-                  </i>
-              </div>
-              <h4 id="h5">Admin functions</h4>
-              <hr />
-            </div>
             <div class="innerSection">
               <div ng-show="loader" style="position: relative">
                     <div class="loading-icon">
@@ -25,16 +16,47 @@
                     <br />
               </div>
               <div ng-show="!loader">
+                <div>
+                  <div class="section-icon">
+                      <i class="">
+                          <img class="img-responsive" src="img/icons/projects-icon-128px.png" />
+                      </i>
+                  </div>
+                  <h4 id="h5">Feature Engineering</h4>
+                  <hr />
+                </div>
                 <div class="tableButtons">
-                      <button type="button" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Open Something</button>
+                      <button type="button" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Employ Machine Learning</button>
                 </div>
                 <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;">
                   <thead>
                     <tr>
-                      <th colspan="3"> Authors </th>
+                      <th colspan="3"> <h2>Feature Engineering</h2> </th>
+                    </tr>
+                    <tr>
+                      <th style="text-align: center"> Name </th>
+                      <th style="text-align: center"> value </th>
+                      <th style="text-align: center"> Accuracy Result </th>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <th style="text-align: center">
+                        <div class="section-icon">
+                            <i class="">
+                                <img class="img-responsive" src="img/icon.png" />
+
+                            </i>
+                        </div>
+                      </th>
+                      <th style="text-align: center">
+                          <form>
+                            <input type="number" name="input" ng-model="ngram.value" min="0" max="99" required>
+                          </form>
+
+                      </th>
+                      <th style="text-align: center">C</th>
+                    </tr>
                   </tbody>
                 </table>
               </div>
