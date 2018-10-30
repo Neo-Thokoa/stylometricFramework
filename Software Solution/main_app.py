@@ -3,8 +3,6 @@ from flask import request, jsonify
 from flask_cors import CORS
 import importlib, importlib.util, os.path
 import os
-import dataclean
-import featureengineering
 
 app = FlaskAPI(__name__)
 CORS(app)
@@ -30,6 +28,7 @@ def dataAcquisition():
 
 @app.route('/dataCleaning/')
 def dataCleaning():
+    import dataclean
     output = dataclean.load_corpus()
     if output != 0:
         return {'status':output}
@@ -38,15 +37,45 @@ def dataCleaning():
 
 @app.route('/featureEngineer/')
 def featureEngineer():
-    # foo = module_from_file("foo", "/a_DataAquisition/retrieve_gmail.py")
-    # result = foo.dataacuire()
-    # return {'data': result}
-    # output = subprocess.check_output(["python", "b_DataCleaning/dataclean.py"])
+    import featureengineering
     output = featureengineering.dataextraction()
     if output != 0:
         return output
     print("Kaizer Chiefs")
     return {'Error':output}
+
+
+@app.route('/featureAnalysis/')
+def featureAnalysis():
+    import featureanalysis
+    output = featureanalysis.textblobClassifiers()
+    if output != 0:
+        return output
+    print("Kaizer Chiefs")
+    return {'Error':output}
+
+
+@app.route('/unreadAnalysis/')
+def unreadAnalysis():
+    import featureanalysis
+    classifiername = request.args.get('type')
+    output = featureanalysis.analyzeunreadmail(classifiername)
+    if output != 0:
+        return output
+    print("Kaizer Chiefs")
+    return {'Error':output}
+
+
+@app.route('/sendwarningmail/')
+def sendwarningmail():
+    import sendwarningemail
+    message = request.args.get('message')
+    output = sendwarningemail.send_mail(message)
+    if output != 0:
+        return "Success"
+    print("Kaizer Chiefs")
+    return {'Error': output}
+
 
 def module_from_file(module_name, file_path):
     print(file_path)

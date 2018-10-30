@@ -8,14 +8,12 @@ from textstat.textstat import textstat
 from textblob import TextBlob
 import json
 
-nltk.download('brown')
 
 
 def load_corpus(input_dir):
     trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
     trainset = []
     # startIndex = 0
-    # numEmails = 0
     for author in trainfiles:
         mailset = []
         # authorset = []
@@ -30,7 +28,6 @@ def load_corpus(input_dir):
                     txt = ''.join(e for e in txt if e.isalnum() or e == ' ')
                     # trainset.append({'label': author, 'text': txt})
                     mailset.append({'text': txt})
-            # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
     return trainset
 
@@ -38,9 +35,12 @@ def load_corpus(input_dir):
 def load_dir(input_dir):
     trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
     trainset = []
+    textblobwriter = csv.writer(open("testset.csv", "w+"), quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
     # startIndex = 0
     # numEmails = 0
     for author in trainfiles:
+        iterEmails = 0
+        testemail = ''
         mailset = []
         # authorset = []
         sent_items = join(input_dir, author)
@@ -51,22 +51,14 @@ def load_dir(input_dir):
                 f = open(fname, "r")
                 contents = f.read()
                 mailset.append({'text': contents})
+                iterEmails = iterEmails + 1
+                if iterEmails >= len(listdir(sent_items)):
+                    testemail = contents
             # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
+            textblobwriter.writerow([testemail, author])
     return trainset
 
-
-# data = load_corpus('../../../Datasets/Enron/raw_maildir')
-# data = load_dir('b_DataCleaning')
-# print(data[0]['mailset'][0])
-
-
-# matrix = train_model(data)
-# import csv
-# a = zip(*data)
-# csv.writer(open("output.csv", "wb")).writerows(a)
-# writeIntoCSV(matrix)
-# function that filters vowels
 
 def averageCharNumber(data):
     featureSet = []
@@ -128,7 +120,7 @@ def averageWordLength(dataset, data):
     count = 0
     finalfeatureset = []
     for author in data:
-        wordcount = 0
+        wordcount = 1
         wordlength = 0
         featureset = []
         for item in author['mailset']:
@@ -164,7 +156,7 @@ def shortWordRatioDensity(dataset, data):
     finalfeatureset = []
     for author in data:
         shortwordcount = 0
-        wordcount = 0
+        wordcount = 1
         featureset = []
         for item in author['mailset']:
             finalWordList = []
@@ -244,7 +236,6 @@ def averagenounphrase(dataset, data):
         for item in author['mailset']:
             wiki = TextBlob(item['text'])
             counter = wiki.np_counts
-            print(counter)
         featureset = dataset[count]['featureSet']
         # featureset.append({'averagePolarityCount': float(float(totalpolarity) / n)})
         # featureset.append({'averageSubjectivityCount': float(float(totalsubjective) / n)})
@@ -274,14 +265,38 @@ def writeIntoCSV(data):
     print("Done")
 
 
+def writeAuthorsCSV(data):
+    f = csv.writer(open("authorlist.csv", "w+"), quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
+    for item in data:
+        f.writerow([item['author']])
+        # for featureitem in item['featureSet']:
+        #     f.writerow([item['author'], featureitem])
+    print("Done")
+
+
+def writetrainset(data):
+    mailId = 100
+    f = csv.writer(open("trainset.csv", "w+"), quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
+    f.writerow(["id", "text", "author"])
+    for item in data:
+        for mail in item['mailset']:
+            f.writerow([mailId, mail['text'], item['author']])
+            mailId = mailId + 1
+    textblobwriter = csv.writer(open("textblobtrain.csv", "w+"), quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
+    for item in data:
+        for mail in item['mailset']:
+            textblobwriter.writerow([mail['text'], item['author']])
+    print("Done")
+
+
 def dataextraction():
     data = load_dir('b_DataCleaning')
-    print(data[0]['mailset'][0])
     print('#################1###############')
     print('Featureset averageCharNumber')
     print('#################1###############')
+    writeAuthorsCSV(data)
+    writetrainset(data)
     datasetForML = averageCharNumber(data)
-    # print(datasetForML[0])
 
     print('#################2###############')
     print('Featureset averageWordNumber')
@@ -329,4 +344,4 @@ def dataextraction():
     return json_data
 
 
-
+dataextraction()

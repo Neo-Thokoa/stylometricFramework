@@ -26,7 +26,7 @@
                   <hr />
                 </div>
                 <div class="tableButtons">
-                      <button type="button" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Employ Machine Learning</button>
+                      <button type="button" class="btn btn-block btn-primary" ng-click="unreadAnalysis()"><span class="glyphicon glyphicon-plus-sign"></span> Run Classifier on unread</button>
                 </div>
                 <table class="table table-hover table-bordered table-striped animate-if" style="background-color:white;">
                   <thead>
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                       <th style="text-align: center"> Name </th>
-                      <th style="text-align: center"> value </th>
+                      <th style="text-align: center"> Features </th>
                       <th style="text-align: center"> Accuracy Result </th>
                     </tr>
                   </thead>
@@ -55,7 +55,29 @@
                           </form>
 
                       </th>
-                      <th style="text-align: center">C</th>
+                      <th style="text-align: center">-</th>
+                    </tr>
+                    <tr>
+                      <th style="text-align: center">
+                        Decision Tree classifier
+                      </th>
+                      <th style="text-align: center">
+
+                      </th>
+                      <th style="text-align: center">
+                        {{dtAccuracy}}
+                      </th>
+                    </tr>
+                    <tr>
+                      <th style="text-align: center">
+                        Naive Bayes classifier
+                      </th>
+                      <th style="text-align: center">
+
+                      </th>
+                      <th style="text-align: center">
+                        {{naiveAccuracy}}
+                      </th>
                     </tr>
                   </tbody>
                 </table>

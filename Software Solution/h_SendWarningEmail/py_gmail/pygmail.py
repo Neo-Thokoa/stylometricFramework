@@ -32,7 +32,7 @@ except ImportError:
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/py-gmail.json
 SCOPES = 'https://www.googleapis.com/auth/gmail.compose'
-# SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
+
 # CLIENT_SECRET_FILE = 'credentials.json'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Py-GMail'

@@ -10,7 +10,7 @@ def load_corpus():
     trainset = []
     numemails = []
     exampleFile = open('./raw_mail_dir.csv')
-    exampleReader = csv.reader(exampleFile)
+    exampleReader = csv.reader(exampleFile, delimiter="~")
     exampleData = list(exampleReader)
     if len(exampleData) > 0:
         print(os.path.isdir('/b_DataCleaning'))
