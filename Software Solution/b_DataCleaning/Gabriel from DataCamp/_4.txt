@@ -1,0 +1,1 @@
+Contingency analysis, TensorFlow tutorial for beginners, recommended IDEs for data scientists and much more! DataCamp ISSUE #66 — OCTOBER 9, 2018 Happy Tuesday! This week we&#39;re diving into
