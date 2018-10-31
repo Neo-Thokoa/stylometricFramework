@@ -7,14 +7,17 @@ import os
 app = FlaskAPI(__name__)
 CORS(app)
 
+
 @app.route('/getData/')
 def getData():
     return {'name':'roy'}
+
 
 @app.route('/Authenticate',methods=['POST'])
 def Authenticate():
     content = request.json
     return jsonify({'username':content['username'],'password':content['password']})
+
 
 @app.route('/dataAcquisition/')
 def dataAcquisition():
@@ -26,6 +29,7 @@ def dataAcquisition():
         return {'status':"Failure"}
     return {'status':"Success"}
 
+
 @app.route('/dataCleaning/')
 def dataCleaning():
     import dataclean
@@ -34,6 +38,7 @@ def dataCleaning():
         return {'status':output}
     print("Kaizer Chiefs")
     return {'status':output}
+
 
 @app.route('/featureEngineer/')
 def featureEngineer():
@@ -59,6 +64,7 @@ def featureAnalysis():
 def unreadAnalysis():
     import featureanalysis
     classifiername = request.args.get('type')
+    print("Just before the call, ", classifiername)
     output = featureanalysis.analyzeunreadmail(classifiername)
     if output != 0:
         return output
@@ -66,15 +72,16 @@ def unreadAnalysis():
     return {'Error':output}
 
 
-@app.route('/sendwarningmail/')
-def sendwarningmail():
+@app.route('/sendmail/')
+def sendmail():
     import sendwarningemail
-    message = request.args.get('message')
+    content = request.json
+    message = content['message']
+    print("Just before the call, ", message)
     output = sendwarningemail.send_mail(message)
     if output != 0:
-        return "Success"
-    print("Kaizer Chiefs")
-    return {'Error': output}
+        return jsonify(success=0)
+    return jsonify(success=1)
 
 
 def module_from_file(module_name, file_path):

@@ -1,7 +1,3 @@
-# from py_gmail import pygmail
-# response = pygmail.send_mail('sender@gmail.com', 'receiver@email.com', 'Message Subject', 'Message text')
-#
-#
 from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
@@ -13,6 +9,7 @@ import base64
 
 SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
 store = file.Storage('token.json')
+
 
 def send_message(service, user_id, message):
     '''Send an email message.
@@ -55,7 +52,6 @@ def create_message(sender, to, subject, message_text):
     return {'raw': base64.urlsafe_b64encode(message.as_bytes()).decode()}
 
 
-
 def send_mail(message_text):
     '''Sends an Email.
 
@@ -76,5 +72,3 @@ def send_mail(message_text):
     response = send_message(GMAIL, sender, message)
     return response
 
-
-send_mail("Dear Neo, My nigga we did it")

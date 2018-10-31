@@ -176,17 +176,20 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
         $scope.sendMessage = function(claimer, detecter)
         {
           $scope.message = "Please Note \n We Have Detected that the email claimed to by written by " + claimer + " was detected to be " + detecter;
-          console.log("Inside Warning Message")
-          $scope.loader = true;
+          console.log("Inside Warning Message", $scope.message);
+          // $scope.loader = true;
           $http({
             method:'GET',
-            url:'http://127.0.0.1:5000/sendwarningmail/',
-            headers: {
-               'Content-Type': 'application/json;charset=utf-8'
-            },
+            url:'http://127.0.0.1:5000/sendmail',
+            crossDomain: true,
+            headers:{
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
             data:{'message': $scope.message}
           })
           .then(function(resp){
+            console.log("We made it");
             $scope.loader = false;
               $scope.result = resp.data;
               console.log($scope.result);
