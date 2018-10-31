@@ -3,20 +3,21 @@ from flask import request, jsonify
 from flask_cors import CORS
 import importlib, importlib.util, os.path
 import os
-import dataclean
-import featureengineering
 
 app = FlaskAPI(__name__)
 CORS(app)
+
 
 @app.route('/getData/')
 def getData():
     return {'name':'roy'}
 
+
 @app.route('/Authenticate',methods=['POST'])
 def Authenticate():
     content = request.json
     return jsonify({'username':content['username'],'password':content['password']})
+
 
 @app.route('/dataAcquisition/')
 def dataAcquisition():
@@ -28,25 +29,60 @@ def dataAcquisition():
         return {'status':"Failure"}
     return {'status':"Success"}
 
+
 @app.route('/dataCleaning/')
 def dataCleaning():
+    import dataclean
     output = dataclean.load_corpus()
     if output != 0:
         return {'status':output}
     print("Kaizer Chiefs")
     return {'status':output}
 
+
 @app.route('/featureEngineer/')
 def featureEngineer():
-    # foo = module_from_file("foo", "/a_DataAquisition/retrieve_gmail.py")
-    # result = foo.dataacuire()
-    # return {'data': result}
-    # output = subprocess.check_output(["python", "b_DataCleaning/dataclean.py"])
+    import featureengineering
     output = featureengineering.dataextraction()
     if output != 0:
         return output
     print("Kaizer Chiefs")
     return {'Error':output}
+
+
+@app.route('/featureAnalysis/')
+def featureAnalysis():
+    import featureanalysis
+    output = featureanalysis.textblobClassifiers()
+    if output != 0:
+        return output
+    print("Kaizer Chiefs")
+    return {'Error':output}
+
+
+@app.route('/unreadAnalysis/')
+def unreadAnalysis():
+    import featureanalysis
+    classifiername = request.args.get('type')
+    print("Just before the call, ", classifiername)
+    output = featureanalysis.analyzeunreadmail(classifiername)
+    if output != 0:
+        return output
+    print("Kaizer Chiefs")
+    return {'Error':output}
+
+
+@app.route('/sendmail/')
+def sendmail():
+    import sendwarningemail
+    content = request.json
+    message = content['message']
+    print("Just before the call, ", message)
+    output = sendwarningemail.send_mail(message)
+    if output != 0:
+        return jsonify(success=0)
+    return jsonify(success=1)
+
 
 def module_from_file(module_name, file_path):
     print(file_path)

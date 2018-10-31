@@ -94,8 +94,8 @@ def dataaquire():
     # exporting the values as .csv
     with open('raw_mail_dir.csv', 'w', encoding='utf-8', newline='') as csvfile:
         fieldnames = ['Sender', 'Subject', 'Date', 'Snippet', 'Message_body']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter=',')
-        writer.writeheader()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter='~')
+        # writer.writeheader()
         for val in final_list:
             writer.writerow(val)
     return "Success Here"
