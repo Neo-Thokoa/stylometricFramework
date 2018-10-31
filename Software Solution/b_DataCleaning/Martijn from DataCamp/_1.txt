@@ -1,0 +1,1 @@
+Hi there, Some new content for you this week! We&#39;re launching 2 new Projects. In the first, you will explore FiveThirtyEight&#39;s Halloween Candy dataset using logistic regression. And in the
