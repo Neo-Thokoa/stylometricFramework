@@ -1,1 +1,1 @@
-Probability Distributions in Python. Introduction to GUIs. New Podcast on Decision Intelligence. Machine Learning Basics. Time Series Analysis in R. And much more! DataCamp ISSUE #68 — OCTOBER 23, 2018
+Numpy Explained. Reducing Rework as a SQL Data Analyst. Pros &amp; Cons of Working Remotely in Analytics. Creating and Deploying a Simple Bokeh Web App. And much more! DataCamp ISSUE #80 — JANUARY 29,

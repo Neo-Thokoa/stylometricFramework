@@ -1,1 +1,1 @@
-The worst TV Bachelor. Credit Card Fraud Detection Tutorial. Popular Python Trading Platform. Working with Datetime Date in Python. Analyzing Cricket Performance in R and much more! DataCamp ISSUE #62
+Introduction to Machine Learning in Python. Introduction to Reinforcement Learning. Regularization: Ridge, Lasso and Elastic Net. Automated Machine Learning with Auto-Keras. And much more! DataCamp

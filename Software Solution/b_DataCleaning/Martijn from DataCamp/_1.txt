@@ -1,1 +1,1 @@
-Hi there, Some new content for you this week! We&#39;re launching 2 new Projects. In the first, you will explore FiveThirtyEight&#39;s Halloween Candy dataset using logistic regression. And in the
+Hi there, We have a lot of new content to announce this week! Starting with two new courses covering visualization with Trelliscope and differential expression analysis. We&#39;re also happy to
