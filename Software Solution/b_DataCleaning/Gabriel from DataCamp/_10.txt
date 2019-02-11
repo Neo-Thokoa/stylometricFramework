@@ -1,1 +1,1 @@
-Build a ggplot. Logistic Regression. What is AI? Predicting Employee Churn. Data Science in Finance. Career move to Big Data. SAS, R or Python? DataCamp ISSUE #60 — AUGUST 21, 2018 Hi there - this
+Introduction to Monte Carlo Methods. Face Detection in Live Video or a Webcam. New Podcast on Managing Data Science Teams. Using Data Science to Help Win Fantasy Football Games. And much more! DataCamp

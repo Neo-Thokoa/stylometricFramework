@@ -1,1 +1,1 @@
-Simple API in Python. Role of Underscore in Python. New Podcast on AI in Healthcare. Installing Keras for Deep Learning. Introduction to Geospatial Data. And much more! DataCamp ISSUE #69 — OCTOBER 30,
+GROUP BY and HAVING Clause in SQL. Python time.sleep() Function. Machine Learning, Sentiment Analysis, Data Visualization with Matplotlib. And much more! DataCamp ISSUE #81 — FEBRUARY 5, 2019 Hi there

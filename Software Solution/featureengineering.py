@@ -64,6 +64,7 @@ def averageCharNumber(data):
     featureSet = []
     for author in data:
         n = author['numemails']
+        print("Author: ", author['author'], "NumberEmails ", n)
         c = 0
         for item in author['mailset']:
             c += len(item['text'])

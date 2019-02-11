@@ -1,1 +1,1 @@
-Dive into machine learning and recommendation systems. Statistical arbitrage techniques. Python for trading. Predicting the popularity of NY Times comments, and more! DataCamp ISSUE #61 — SEPTEMBER 4,
+Differences Between Machine Learning &amp; Deep Learning. Introduction To Bayesian Statistics In Finance. New Podcast on Data Science Tool Building. Simplifying Sentiment Analysis in Python. And much

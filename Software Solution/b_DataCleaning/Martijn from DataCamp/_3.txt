@@ -1,1 +1,1 @@
-Hi there, We have a lot of new content to share this week! A new Course on A/B testing, a Project on predicting Taxi fares, and a new track on Tidyverse Fundamentals. Take advantage of this content and
+Hi there, A lot of new content for you this week! We&#39;re launching eight new courses, including Fraud Detection in both Python and R. These courses will show you how learning fraud patterns from

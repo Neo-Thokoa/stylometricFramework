@@ -1,1 +1,1 @@
-On a hill far away there&#39;s Machine Learning to be learnt. Hope you enjoyed this Ted talk. Regards
+Hi there - in this week&#39;s newsletter you&#39;ll find a new podcast episode on AI in Healthcare, a tutorial on a simple API in Python, uses of the underscore in Python, installing Keras for deep
