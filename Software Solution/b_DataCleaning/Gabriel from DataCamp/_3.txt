@@ -1,1 +1,1 @@
-Content Library Growth in the Past 3 Months, Project Jupyter and Interactive Computing, Pandas Resampling Tutorial, Data Visualization In Python Using Bokeh, and more! DataCamp ISSUE #67 — OCTOBER 16,
+Pandas Explained. Introduction to Tensorflow. Data Scientists in Financial Services.Neural Network Models in R. And much more! DataCamp ISSUE #79 — JANUARY 22, 2019 Hi there - in this week&#39;s

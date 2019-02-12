@@ -1,1 +1,1 @@
-Hi there, We&#39;ve been busy here at DataCamp. We&#39;ve recently launched 3 new Courses and 1 new Project for you to expand your data science skills. Check them out below! Preprocessing for Machine
+Hi there, Some new content for you this week! We&#39;re launching three new R courses, including Anomaly Detection in R. In this course, you&#39;ll explore statistical tests for identifying outliers,

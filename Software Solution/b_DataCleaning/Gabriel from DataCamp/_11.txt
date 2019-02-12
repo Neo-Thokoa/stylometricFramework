@@ -1,1 +1,1 @@
-Web Scraping with Python, Weather Data Analysis, Preparing a Machine Learning interview, and much more! DataCamp ISSUE #58 — AUGUST 7, 2018 DataCamp Weekly Hi there - welcome back to another issue of
+Essentials of Linear Regression in Python. JSON Data in Python. New Podcast on Human Centered Design in Data Science. Salaries &amp; Industry Shifts. Data Science Interview Questions with Answers. And

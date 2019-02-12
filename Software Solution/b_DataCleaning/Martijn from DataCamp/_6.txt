@@ -1,1 +1,1 @@
-Hi there, We have launched three new courses in the past two weeks! Two in Python and one in R. Check them out below if you&#39;re interested in learning about Bayesian data analysis, police activity,
+Hi there, Some new content for you this week! We&#39;re launching a new course, Multivariate Probability Distributions in R. In this course, you&#39;ll learn how to study the relationship between

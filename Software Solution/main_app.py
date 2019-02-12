@@ -63,9 +63,9 @@ def featureAnalysis():
 @app.route('/unreadAnalysis/')
 def unreadAnalysis():
     import featureanalysis
-    classifiername = request.args.get('type')
-    print("Just before the call, ", classifiername)
-    output = featureanalysis.analyzeunreadmail(classifiername)
+    # classifiername = request.args.get('type')
+    # print("Just before the call, ", classifiername)
+    output = featureanalysis.analyzeunreadmail("RandomTree")
     if output != 0:
         return output
     print("Kaizer Chiefs")

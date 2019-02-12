@@ -1,1 +1,1 @@
-Demystifying Crucial Statistics in Python. For Loops in R. Customer Segmentation in Python. Writing R code the right way. Convolutional Neural Networks. Feature Selection in Python. And more! DataCamp
+Face Detection with Python using OpenCV. Beginner&#39;s Guide to Google&#39;s Vision API in Python. IUnderstanding Recursive Functions in Python. Decision Tree Classification in Python. And much more!

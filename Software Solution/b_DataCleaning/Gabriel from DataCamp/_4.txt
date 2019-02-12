@@ -1,1 +1,1 @@
-Contingency analysis, TensorFlow tutorial for beginners, recommended IDEs for data scientists and much more! DataCamp ISSUE #66 — OCTOBER 9, 2018 Happy Tuesday! This week we&#39;re diving into
+OpenAI Gym Space Invaders in Jupyter Notebooks. Implementation of Softmax Regression. Lyric Analysis: Predictive Analytics using Machine Learning with R. Making Web Crawlers Using Scrapy for Python.
