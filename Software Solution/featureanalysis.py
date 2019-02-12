@@ -348,7 +348,7 @@ def classifierunreademail(classifiername):
 
 
 def analyzeunreadmail(classifiername):
-    SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
+    SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
@@ -418,7 +418,7 @@ def analyzeunreadmail(classifiername):
         final_list.append(temp_dict)  # This will create a dictonary item in the final list
 
         # This will mark the messagea as read
-        GMAIL.users().messages().modify(userId=user_id, id=m_id, body={'removeLabelIds': ['UNREAD']}).execute()
+        #GMAIL.users().messages().modify(userId=user_id, id=m_id, body={'removeLabelIds': ['UNREAD']}).execute()
 
     print("Total messaged retrived: ", str(len(final_list)))
     # exporting the values as .csv
@@ -433,4 +433,4 @@ def analyzeunreadmail(classifiername):
     return classifierunreademail(classifiername)
 
 
-# print(analyzeunreadmail("Decision Tree"))
+print(analyzeunreadmail("Decision Tree"))

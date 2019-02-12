@@ -1,1 +1,0 @@
-This paper investigates the design and implementation of a graph visualisation application that is primarily virtual reality centered. How should one design a graph visualisation tool in a virtual

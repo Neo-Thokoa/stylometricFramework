@@ -71,7 +71,7 @@ td.doublelanes { white-space: pre; }
 
 
 .uploadButton {
-  border: 2px solid #68831E;
+  border: 2px solid #a742f4;
   color: gray;
   background-color: white;
   padding: 8px 20px;
@@ -220,7 +220,7 @@ div.thumbnailDiv:hover{
     padding: 0px;
     margin: 0px;
     /*height: 96px !important;*/
-    background-color:#68831e;
+    background-color:#a742f4;
 }
 
 #myNavbar a {
@@ -533,7 +533,7 @@ table
 
 th
 {
-	background-color: #68831e;
+	background-color: #a742f4;
 	color: white;
 }
 
@@ -558,7 +558,7 @@ th
 
 #h5
 {
-    color:#68831e;
+    color:#a742f4;
     display:inline;
 }
 
@@ -636,22 +636,22 @@ th
 
 #subHeading
 {
-    color:#68831e;
+    color:#a742f4;
     font-weight: bold;
     padding-top:15px;
 }
 
 .btn-primary {
-    background: #68831e;
+    background: #a742f4;
     color: #ffffff;
     height: 30px;
-    border-color: #68831e;
+    border-color: #a742f4;
 }
 
     .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-        color: #68831e;
+        color: #a742f4;
         background-color: white;
-        border-color: #68831e;
+        border-color: #a742f4;
     }
 
 .innerSection
@@ -702,7 +702,7 @@ hr
 
 .messages
 {
-    border: 2px solid #68831e;
+    border: 2px solid #a742f4;
     /*border-radius: 5px;*/
     padding: 20px;
     margin-top:15px;
@@ -975,7 +975,7 @@ canvas{
   width: 40px;
   height: 40px;
   position: relative;
-  border: 4px solid #68831e;
+  border: 4px solid #a742f4;
   animation: loader 2s infinite ease;
 }
 
@@ -988,12 +988,12 @@ canvas{
   vertical-align: top;
   display: inline-block;
   width: 100%;
-  background-color: #68831e;
+  background-color: #a742f4;
   animation: loader-inner 2s infinite ease-in;
 }
 
 .h2-style{
-  color: #68831e;
+  color: #a742f4;
   font-size: 32px;
   font-family: open_sanslight;
   margin-top: 7px;
@@ -1002,15 +1002,15 @@ canvas{
 }
 
 oi-select.focused .select-search{
-  border-color: #68831e !important;
+  border-color: #a742f4 !important;
 }
 
 oi-select .select-dropdown{
-  border-color: #68831e !important;
+  border-color: #a742f4 !important;
 }
 
 .adminIcons{
-    color: #68831e !important;
+    color: #a742f4 !important;
 }
 
 .animate-if.ng-enter, .animate-if.ng-leave {
@@ -1150,7 +1150,7 @@ div#loader{
 }
 
 .lastShowHeading{
-  color: #68831E;
+  color: #a742f4;
 }
 .sampleMaterialControls{
   text-align: center;
@@ -1185,5 +1185,5 @@ div#loader{
 
 .menuGrid{
    display: grid;
-   border: 1px solid #68831E;
+   border: 1px solid #a742f4;
 }

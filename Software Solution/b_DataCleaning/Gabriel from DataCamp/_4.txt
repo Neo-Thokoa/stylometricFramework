@@ -1,1 +1,0 @@
-OpenAI Gym Space Invaders in Jupyter Notebooks. Implementation of Softmax Regression. Lyric Analysis: Predictive Analytics using Machine Learning with R. Making Web Crawlers Using Scrapy for Python.
