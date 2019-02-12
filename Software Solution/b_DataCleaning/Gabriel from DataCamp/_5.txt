@@ -1,1 +1,0 @@
-Face Detection with Python using OpenCV. Beginner&#39;s Guide to Google&#39;s Vision API in Python. IUnderstanding Recursive Functions in Python. Decision Tree Classification in Python. And much more!

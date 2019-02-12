@@ -1,1 +1,0 @@
-Hi there, Some new content for you this week! We&#39;re launching three new R courses, including Anomaly Detection in R. In this course, you&#39;ll explore statistical tests for identifying outliers,

@@ -1,1 +1,0 @@
-Shareable Data Science with Kyso. Naive Bayes Classification using Scikit-learn. How to Evaluate Data Scientist Job Offers. Introduction to Python Metaclasses. And much more! DataCamp ISSUE #75 —
