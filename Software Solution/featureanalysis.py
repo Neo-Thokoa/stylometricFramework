@@ -222,7 +222,7 @@ def getauthors(AUTHORS):
 #     return "Done"
 
 def textblobClassifiers():
-    testfile = open('testset.csv')
+    testfile = open('testset.csv', encoding="utf8")
     testset = csv.reader(testfile, delimiter="~")
     testdata = list(testset)
     itertest = 0

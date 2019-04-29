@@ -68,7 +68,8 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
             method:'GET',
             url:'http://127.0.0.1:5000/dataCleaning/',
             headers: {
-               'Content-Type': 'application/json;charset=utf-8'
+               'Content-Type': 'application/json;charset=utf-8',
+                'crossDomain': true
             }
           })
           .then(function(resp){

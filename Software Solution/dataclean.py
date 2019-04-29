@@ -9,7 +9,7 @@ def load_corpus():
     authcount = 0
     trainset = []
     numemails = []
-    exampleFile = open('./raw_mail_dir.csv')
+    exampleFile = open('./raw_mail_dir.csv', encoding="utf8")
     exampleReader = csv.reader(exampleFile, delimiter="~")
     exampleData = list(exampleReader)
     if len(exampleData) > 0:

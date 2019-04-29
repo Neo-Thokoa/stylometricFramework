@@ -1,16 +1,11 @@
 from flask_api import FlaskAPI
 from flask import request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import importlib, importlib.util, os.path
 import os
 
 app = FlaskAPI(__name__)
-CORS(app)
-
-
-@app.route('/getData/')
-def getData():
-    return {'name':'roy'}
+CORS(app, support_credentials=True)
 
 
 @app.route('/Authenticate',methods=['POST'])
@@ -21,9 +16,6 @@ def Authenticate():
 
 @app.route('/dataAcquisition/')
 def dataAcquisition():
-    # foo = module_from_file("foo", "/a_DataAquisition/retrieve_gmail.py")
-    # result = foo.dataacuire()
-    # return {'data': result}
     result = os.system('python a_DataAquisition/retrieve_gmail.py')
     if result != 0:
         return {'status':"Failure"}
@@ -31,9 +23,10 @@ def dataAcquisition():
 
 
 @app.route('/dataCleaning/')
+@cross_origin(supports_credentials=True)
 def dataCleaning():
-    import dataclean
-    output = dataclean.load_corpus()
+    print("Just before the call, ")
+    output = os.system('python dataclean.py')
     if output != 0:
         return {'status':output}
     print("Kaizer Chiefs")
