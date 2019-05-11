@@ -35,8 +35,7 @@ def dataCleaning():
 
 @app.route('/featureEngineer/')
 def featureEngineer():
-    import featureengineering
-    output = featureengineering.dataextraction()
+    output = os.system('python featureengineering.py')
     if output != 0:
         return output
     print("Kaizer Chiefs")
@@ -67,10 +66,10 @@ def unreadAnalysis():
 
 @app.route('/sendmail/')
 def sendmail():
-    import sendwarningemail
     content = request.json
     message = content['message']
     print("Just before the call, ", message)
+    import sendwarningemail
     output = sendwarningemail.send_mail(message)
     if output != 0:
         return jsonify(success=0)
