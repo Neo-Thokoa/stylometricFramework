@@ -1,8 +1,9 @@
-from flask_api import FlaskAPI
+from flask_api import FlaskAPI, request
 from flask import request, jsonify
 from flask_cors import CORS, cross_origin
 import importlib, importlib.util, os.path
 import os
+import subprocess
 
 app = FlaskAPI(__name__)
 CORS(app, support_credentials=True)
@@ -44,6 +45,7 @@ def featureEngineer():
 
 @app.route('/featureAnalysis/')
 def featureAnalysis():
+    # output = os.system('python featureanalysis.py')
     import featureanalysis
     output = featureanalysis.textblobClassifiers()
     if output != 0:
@@ -54,10 +56,7 @@ def featureAnalysis():
 
 @app.route('/unreadAnalysis/')
 def unreadAnalysis():
-    import featureanalysis
-    # classifiername = request.args.get('type')
-    # print("Just before the call, ", classifiername)
-    output = featureanalysis.analyzeunreadmail("RandomTree")
+    output = os.system('python anylyzeunread.py')
     if output != 0:
         return output
     print("Kaizer Chiefs")
@@ -65,6 +64,7 @@ def unreadAnalysis():
 
 
 @app.route('/sendmail/')
+@cross_origin(origin='*')
 def sendmail():
     content = request.json
     message = content['message']
@@ -83,6 +83,16 @@ def module_from_file(module_name, file_path):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+#
+#
+# @app.after_request
+# def add_headers(response):
+#     response.headers.add('Content-Type', 'application/json')
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     response.headers.add('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#     response.headers.add('Access-Control-Expose-Headers', 'Content-Type,Content-Length,Authorization,X-Pagination')
+#     return response
 
 
 if __name__=="__main__":

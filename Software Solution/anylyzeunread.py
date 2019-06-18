@@ -152,6 +152,7 @@ def classifierunreademail(classifiername):
 
         result = {"authorastatus": authorastatus, "authorbstatus": authorbstatus, "detectedAuthorA": detectedauthora, "detectedAuthorB": detectedauthorb, "claimedA": authorOne, "claimedB": authorTwo}
         json_data = json.dumps(result)
+        print(json_data)
         return json_data
 
 
@@ -241,4 +242,4 @@ def analyzeunreadmail(classifiername):
     return classifierunreademail(classifiername)
 
 
-textblobClassifiers()
+analyzeunreadmail("RandomTree")

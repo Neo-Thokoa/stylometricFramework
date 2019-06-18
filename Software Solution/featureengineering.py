@@ -9,7 +9,6 @@ from textblob import TextBlob
 import json
 
 
-
 def load_corpus(input_dir):
     trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
     trainset = []
@@ -26,7 +25,6 @@ def load_corpus(input_dir):
                     e = email.message_from_file(open(fname))
                     txt = e.get_payload().split('-----')[0]
                     txt = ''.join(e for e in txt if e.isalnum() or e == ' ')
-                    # trainset.append({'label': author, 'text': txt})
                     mailset.append({'text': txt})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
     return trainset
