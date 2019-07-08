@@ -33,7 +33,8 @@ def load_corpus(input_dir):
 def load_dir(input_dir):
     trainfiles = [f for f in listdir(input_dir) if isdir(join(input_dir, f))]
     trainset = []
-    textblobwriter = csv.writer(open("testset.csv", "w+"), quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
+    fileopen = open("testset.csv", "w+")
+    textblobwriter = csv.writer(fileopen, quoting=csv.QUOTE_NONNUMERIC, delimiter='~')
     # startIndex = 0
     # numEmails = 0
     for author in trainfiles:
@@ -55,6 +56,7 @@ def load_dir(input_dir):
             # authorset.append({'numemails':len(listdir(sent_items)), 'mailset':mailset})
             trainset.append({'author': author, 'numemails': len(listdir(sent_items)), 'mailset': mailset})
             textblobwriter.writerow([testemail, author])
+    fileopen.close()
     return trainset
 
 

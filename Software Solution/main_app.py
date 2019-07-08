@@ -1,9 +1,14 @@
 from flask_api import FlaskAPI, request
-from flask import request, jsonify
+from flask import request, jsonify, logging
 from flask_cors import CORS, cross_origin
 import importlib, importlib.util, os.path
 import os
 import subprocess
+import dataclean
+import featureengineering
+import featureanalysis
+import sendwarningemail
+import anylyzeunread
 
 app = FlaskAPI(__name__)
 CORS(app, support_credentials=True)
@@ -17,9 +22,9 @@ def Authenticate():
 
 @app.route('/dataAcquisition/')
 def dataAcquisition():
-    result = os.system('python a_DataAquisition/retrieve_gmail.py')
-    if result != 0:
-        return {'status':"Failure"}
+    # result = os.system('python a_DataAquisition/retrieve_gmail.py')
+    # if result != 0:
+    #     return {'status':"Failure"}
     return {'status':"Success"}
 
 
@@ -27,39 +32,48 @@ def dataAcquisition():
 @cross_origin(supports_credentials=True)
 def dataCleaning():
     print("Just before the call, ")
-    output = os.system('python dataclean.py')
+    # output = os.system('python dataclean.py')
+    print("Just after the call")
+    output = dataclean.load_corpus()
     if output != 0:
         return {'status':output}
-    print("Kaizer Chiefs")
+    print("OutPut Is NULL on Dataclean")
     return {'status':output}
 
 
 @app.route('/featureEngineer/')
 def featureEngineer():
-    output = os.system('python featureengineering.py')
+    # output = os.system('python featureengineering.py')
+    print("Just before the call of Financial Engineer, ")
+    output = featureengineering.dataextraction()
     if output != 0:
         return output
-    print("Kaizer Chiefs")
+    print("OutPut Is NULL on featureengineering")
     return {'Error':output}
 
 
 @app.route('/featureAnalysis/')
 def featureAnalysis():
     # output = os.system('python featureanalysis.py')
-    import featureanalysis
-    output = featureanalysis.textblobClassifiers()
+    print("Just before the call of Feature Analysis ")
+    output = featureanalysis.textblobclassifiers()
+    # output = "Cheese"
     if output != 0:
+        print("OutPut Is Success on featureeanalysis")
         return output
-    print("Kaizer Chiefs")
+    print("OutPut Is NULL on featureeanalysis")
     return {'Error':output}
 
 
 @app.route('/unreadAnalysis/')
 def unreadAnalysis():
-    output = os.system('python anylyzeunread.py')
+    print("Just before the call of Feature unreadAnalysis ")
+    output = anylyzeunread.analyzeunreadmail("RandomTree")
+    # output = "Cheese"
     if output != 0:
+        print("OutPut Is Success on unreadAnalysis")
         return output
-    print("Kaizer Chiefs")
+    print("OutPut Is NULL on unreadAnalysis")
     return {'Error':output}
 
 
@@ -69,7 +83,7 @@ def sendmail():
     content = request.json
     message = content['message']
     print("Just before the call, ", message)
-    import sendwarningemail
+    # import sendwarningemail
     output = sendwarningemail.send_mail(message)
     if output != 0:
         return jsonify(success=0)

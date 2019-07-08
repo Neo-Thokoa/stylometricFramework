@@ -71,10 +71,8 @@ def dataaquire():
             temp_dict['Message_body'] = mime_msg
 
         except:
-            print('Exception trig')
             pass
 
-        # print(temp_dict)
         final_list.append(temp_dict)  # This will create a dictonary item in the final list
 
     print("Total messaged retrived: ", str(len(final_list)))

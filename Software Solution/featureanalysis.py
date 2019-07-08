@@ -33,10 +33,14 @@ def getauthors(AUTHORS):
     return AUTHORS
 
 
-def textblobClassifiers():
-    testfile = open('testset.csv', encoding="utf8")
+def textblobclassifiers():
+    print("We are in TextBlob")
+    testfile = open('testset.csv')
     testset = csv.reader(testfile, delimiter="~")
-    testdata = list(testset)
+    try:
+        testdata = list(testset)
+    except:
+        testdata = list(testset)
     itertest = 0
     for x in testdata:
         if len(x) < 1:
@@ -70,6 +74,7 @@ def textblobClassifiers():
     result = {"mostAccurate": mostaccurate, "naiveaccuracy": naiveaccuracy, "dtaccuracy": dtaccuracy}
     json_data = json.dumps(result)
     return json_data
+    # return "test"
 
 
 def classifierunreademail(classifiername):
@@ -241,4 +246,8 @@ def analyzeunreadmail(classifiername):
     return classifierunreademail(classifiername)
 
 
-textblobClassifiers()
+def testprint():
+    return "Print Success"
+
+
+print("Activated")

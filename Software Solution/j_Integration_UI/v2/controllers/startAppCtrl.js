@@ -25,14 +25,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
 
         templateUrl: "pages/navBar.html",
         controller: "navCtrl"
-        }
-
-        $scope.viewTodoMenu = function()
-        {
-          $rootScope = null;
-        	$location.path('/todoListMenu');
-        }
-
+        };
 
 
         $scope.initializeApp = function()
@@ -56,9 +49,7 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
           },function(error){
               console.log(error);
           });
-          // $http.get("http://127.0.0.1:5000/dataAcquisition/").then(function(response){
-          //   console.log(response.data); });
-        }
+        };
 
         $scope.dataClean = function()
         {
@@ -80,31 +71,30 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
           },function(error){
               console.log(error);
           });
-          // $http.get("http://127.0.0.1:5000/dataAcquisition/").then(function(response){
-          //   console.log(response.data); });
-        }
+        };
 
         $scope.dataExtract = function()
         {
-          console.log("Inside Data Extraction");
+          console.log("Inside Feature Engineering");
           $scope.loader = true;
           $http({
             method:'GET',
             url:'http://127.0.0.1:5000/featureEngineer/',
             headers: {
-               'Content-Type': 'application/json;charset=utf-8'
+               'Content-Type': 'application/json;charset=utf-8',
+                'crossDomain': true
             }
           })
           .then(function(resp){
             $scope.loader = false;
-              console.log($scope.result);
+            console.log("Exiting Feature Engineer with response as follows");
+              console.log(resp.data);
               $scope.dataAnalysis();
           },function(error){
+            console.log("Something failed Feature Engineering");
               console.log(error);
           });
-          // $http.get("http://127.0.0.1:5000/dataAcquisition/").then(function(response){
-          //   console.log(response.data); });
-        }
+        };
 
         $scope.unreadAnalysis = function()
         {
@@ -137,7 +127,8 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
             method:'GET',
             url:'http://127.0.0.1:5000/featureAnalysis/',
             headers: {
-               'Content-Type': 'application/json;charset=utf-8'
+               'Content-Type': 'application/json;charset=utf-8',
+                'crossDomain': true
             }
           })
           .then(function(resp){
@@ -148,11 +139,10 @@ todoModule.controller("startAppCtrl", ['$http',"$scope", "$location", function (
               $scope.dtAccuracy = resp.data.dtaccuracy;
               $scope.classifierUsed = resp.data.mostAccurate;
           },function(error){
+            console.log("Something failed Feature Analysis");
               console.log(error);
           });
-          // $http.get("http://127.0.0.1:5000/dataAcquisition/").then(function(response){
-          //   console.log(response.data); });
-        }
+        };
 
         $scope.activate = function()
         {

@@ -34,7 +34,7 @@ def getauthors(AUTHORS):
 
 
 def textblobClassifiers():
-    testfile = open('testset.csv', encoding="utf8")
+    testfile = open('testset.csv')
     testset = csv.reader(testfile, delimiter="~")
     testdata = list(testset)
     itertest = 0
@@ -157,7 +157,7 @@ def classifierunreademail(classifiername):
 
 
 def analyzeunreadmail(classifiername):
-    SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
+    SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
